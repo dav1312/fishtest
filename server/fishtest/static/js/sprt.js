@@ -1,9 +1,9 @@
 "use strict";
 
 /*
-  This program computes passing probabilities and expected running times for SPRT tests.
-  See http://hardy.uhasselt.be/Fishtest/sprta.pdf for more information.
-*/
+ * This program computes passing probabilities and expected running times for SPRT tests.
+ * See http://hardy.uhasselt.be/Fishtest/sprta.pdf for more information.
+ */
 
 const nelo_divided_by_nt = 800 / Math.log(10);
 

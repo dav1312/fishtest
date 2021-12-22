@@ -1,5 +1,7 @@
-// https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
-// https://stackoverflow.com/questions/40201533/sort-version-dotted-number-strings-in-javascript
+/*
+ * https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
+ * https://stackoverflow.com/questions/40201533/sort-version-dotted-number-strings-in-javascript
+ */
 const getCellValue = (tr, idx) => tr.children[idx].dataset.diff || tr.children[idx].innerText || tr.children[idx].textContent;
 const padDotVersion = (dn) =>
     dn
@@ -60,9 +62,11 @@ $(() => {
         $.cookie("machines_state", $(this).text().trim());
     });
 
-    // Click the sun/moon icons to change the color theme of the site
-    // SRI hash for "fishtest/server/fishtest/static/css/theme.dark.css":
-    // openssl dgst -sha256 -binary theme.dark.css | openssl base64 -A
+    /*
+     * Click the sun/moon icons to change the color theme of the site
+     * SRI hash for "fishtest/server/fishtest/static/css/theme.dark.css":
+     * openssl dgst -sha256 -binary theme.dark.css | openssl base64 -A
+     */
     let theme = $.cookie("theme") || "light";
     $("#change-color-theme").click(function () {
         if (theme === "light") {

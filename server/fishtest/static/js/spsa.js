@@ -108,7 +108,7 @@
     function smooth_data(b) {
         var dt;
 
-        //cache data table to avoid recomputing the smoothed graph
+        // cache data table to avoid recomputing the smoothed graph
         if (data_cache[b]) {
             dt = data_cache[b];
         } else {
@@ -176,11 +176,11 @@
     $(document).ready(function () {
         $("#div_spsa_preload").fadeIn();
 
-        //load google library
+        // load google library
         google.load("visualization", "1.0", {
             packages: ["corechart"],
             callback: function () {
-                //request data for chart
+                // request data for chart
                 $.getJSON(spsa_history_url, function (data) {
                     spsa_params = data.params;
                     var spsa_history = data.param_history;
@@ -243,7 +243,7 @@
                             redraw(false);
                         });
 
-                    //show/hide functionality
+                    // show/hide functionality
                     google.visualization.events.addListener(chart_object, "select", function (e) {
                         var sel = chart_object.getSelection();
                         if (sel.length > 0) {
@@ -276,7 +276,7 @@
                         $("#div_spsa_error").html(msg).show();
                     })
                     .always(function () {
-                        //after request is complete
+                        // after request is complete
                         $("#div_spsa_preload").hide();
                     });
 

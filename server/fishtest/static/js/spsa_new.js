@@ -1,19 +1,19 @@
 "use strict";
 
 /*
-Quick and dirty way to get the 95% quantile of the
-chi2 distribution.
-*/
+ * Quick and dirty way to get the 95% quantile of the
+ * chi2 distribution.
+ */
 
 function chi2_95_approximation(df) {
-    /* Wilson and Hilferty approximation */
+    // Wilson and Hilferty approximation
     var z95 = 1.6448536269514722;
     var t = 2 / (9 * df);
     return df * Math.pow(z95 * Math.pow(t, 0.5) + 1 - t, 3);
 }
 
 function chi2_95(df) {
-    /* Table for df=1,..,99 */
+    // Table for df=1,..,99
     var chi2_95_ = [
         3.8414588206941236, 5.9914645471079799, 7.8147279032511765, 9.487729036781154, 11.070497693516351, 12.591587243743977, 14.067140449340167, 15.507313055865453, 16.918977604620448,
         18.307038053275143, 19.675137572682491, 21.026069817483066, 22.362032494826941, 23.68479130484058, 24.99579013972863, 26.296227604864235, 27.587111638275324, 28.869299430392626,
@@ -73,17 +73,15 @@ function spsa_compute(spsa_setup) {
 }
 
 /*
-Below is some code to estimate the draw ratio from the time
-control. The algorithm is very naive. It uses interpolation for
-a few data points valid for the book "noob_3moves.epd".
-*/
+ * Below is some code to estimate the draw ratio from the time
+ * control. The algorithm is very naive. It uses interpolation for
+ * a few data points valid for the book "noob_3moves.epd".
+ */
 
 function tc_to_seconds(tc) {
-    /*
-Convert cutechess-cli like tc time[/moves][+inc] to seconds/move.
-*/
+    // Convert cutechess-cli like tc time[/moves][+inc] to seconds/move.
     var inc = 0;
-    var moves = 68; /* Fishtest average LTC game duration. */
+    var moves = 68; // Fishtest average LTC game duration.
     var time;
     var chunks = tc.split("+");
     if (chunks.length > 2) {
@@ -123,7 +121,7 @@ Convert cutechess-cli like tc time[/moves][+inc] to seconds/move.
         time = 60 * chunk0 + chunk1;
     }
     var tc_seconds = time / moves + inc;
-    /* Adhoc for our application: do not allow zero time control */
+    // Adhoc for our application: do not allow zero time control
     if (tc_seconds <= 0) {
         return null;
     }
@@ -135,9 +133,7 @@ function logistic(x) {
 }
 
 function draw_ratio(tc) {
-    /*
-       Formula approximately valid for the book "noob_3moves.epd".
-    */
+    // Formula approximately valid for the book "noob_3moves.epd".
     const slope = 0.372259082112;
     const intercept = 0.953433526293;
     var tc_seconds = tc_to_seconds(tc);
@@ -148,9 +144,9 @@ function draw_ratio(tc) {
 }
 
 /*
-Now some code to convert Fishtest style spsa data to spsa_setup
-objects and back.
-*/
+ * Now some code to convert Fishtest style spsa data to spsa_setup
+ * objects and back.
+ */
 
 function fishtest_to_spsa(fs) {
     var s = deepcopy(spsa_setup_default);
