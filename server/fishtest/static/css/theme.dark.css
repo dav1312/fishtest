@@ -1,330 +1,372 @@
 /* A custom dark color theme for overriding bootstrap css rules */
 
 :root {
-  --bg-dark-1: #111;
-  --bg-dark-2: #222;
-  --bg-dark-3: #333;
-  --bg-dark-4: #444;
-  --bg-dark-5: #555;
-  --color-dark-1: #b1ada7;
+    --bg-dark-1: #111;
+    --bg-dark-2: #222;
+    --bg-dark-3: #333;
+    --bg-dark-4: #444;
+    --bg-dark-5: #555;
+    --color-dark-1: #b1ada7;
 }
 
 body {
-  background: var(--bg-dark-1);
-  color: var(--color-dark-1);
+    background: var(--bg-dark-1);
+    color: var(--color-dark-1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #414141;
-  border: 4px solid var(--bg-dark-1);
+    background-color: #414141;
+    border: 4px solid var(--bg-dark-1);
 }
 
 .contentbase::-webkit-scrollbar-thumb {
-  border: 4px solid var(--bg-dark-1);
+    border: 4px solid var(--bg-dark-1);
 }
 
 .contentbase::-webkit-scrollbar-track {
-  background-color: var(--bg-dark-1);
+    background-color: var(--bg-dark-1);
 }
 
 .contentbase main > h2 {
-  background: var(--bg-dark-1);
-  box-shadow: 0px 3px 10px var(--bg-dark-1);
+    background: var(--bg-dark-1);
+    box-shadow: 0px 3px 10px var(--bg-dark-1);
 }
 
 .sticky-top {
-  background: var(--bg-dark-1);
+    background: var(--bg-dark-1);
 }
 
 a {
-  color: #75bb76;
+    color: #75bb76;
 }
 
 .form-control {
-  background-color: var(--color-dark-1);
+    background-color: var(--color-dark-1);
 }
 
 pre .hljs {
-  color: #c9d1d9;
-  background: var(--bg-dark-2);
+    color: #c9d1d9;
+    background: var(--bg-dark-2);
 }
 
 pre .hljs-comment,
 .hljs-quote {
-  color: #8b949e;
+    color: #8b949e;
 }
 
 pre .hljs-deletion {
-  background: #f851494d;
+    background: #f851494d;
 }
 
 pre .hljs-addition {
-  background: #3fb9504d;
+    background: #3fb9504d;
 }
 
 pre code::-webkit-scrollbar-thumb {
-  border: 4px solid var(--bg-dark-2);
+    border: 4px solid var(--bg-dark-2);
 }
 
 legend {
-  color: var(--color-dark-1);
+    color: var(--color-dark-1);
 }
 
 hr {
-  border-top: 1px solid var(--bg-dark-4);
-  border-bottom: 1px solid var(--bg-dark-3);
+    border-top: 1px solid var(--bg-dark-4);
+    border-bottom: 1px solid var(--bg-dark-3);
 }
 
 /* Left-side main navigation sidebar */
 .mainnavbar {
-  background-color: var(--bg-dark-2);
+    background-color: var(--bg-dark-2);
 }
 
 .mainnavbar::-webkit-scrollbar-thumb {
-  border: 6px solid var(--bg-dark-2);
+    border: 6px solid var(--bg-dark-2);
 }
 
 .mainnavbar::-webkit-scrollbar-track {
-  background-color: var(--bg-dark-2);
+    background-color: var(--bg-dark-2);
 }
 
 .nav li.nav-header {
-  color: var(--color-dark-1);
+    color: var(--color-dark-1);
 }
 
 .nav li a,
 .nav li div {
-  color: var(--color-dark-1);
+    color: var(--color-dark-1);
 }
 
 .nav li a:hover,
 .nav li div:hover {
-  color: #e7e7e7;
+    color: #e7e7e7;
 }
 
 .nav li a,
 .nav .nav-header,
 .nav li div {
-  text-shadow: 0 1px 0 rgba(10, 10, 10, 0.5);
+    text-shadow: 0 1px 0 rgba(10, 10, 10, 0.5);
 }
 
 .nav li a:hover,
 .nav li div:hover {
-  background: var(--bg-dark-3);
+    background: var(--bg-dark-3);
 }
 
 .nav li a:focus,
 .nav li div:focus {
-  background: var(--bg-dark-4);
+    background: var(--bg-dark-4);
 }
 
 #change-color-theme path {
-  fill: var(--color-dark-1) !important;
+    fill: var(--color-dark-1) !important;
 }
 
 /* Text inputs and selects */
-textarea, input[type="text"], input[type="password"],
-input[type="datetime"], input[type="datetime-local"], input[type="date"],
-input[type="month"], input[type="time"], input[type="week"], input[type="number"],
-input[type="email"], input[type="url"], input[type="search"], input[type="tel"],
-input[type="color"], .uneditable-input {
-  background: var(--bg-dark-4);
-  border: 1px solid #101010;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    background: var(--bg-dark-4);
+    border: 1px solid #101010;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus,
-input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus,
-input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus,
-input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus,
-input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus,
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
 .uneditable-input:focus {
-  color: var(--color-dark-1);
-  background: var(--bg-dark-4);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(106 216 241 / 60%);
+    color: var(--color-dark-1);
+    background: var(--bg-dark-4);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106 216 241 / 60%);
 }
 
-select, textarea, input[type="text"], input[type="password"],
-input[type="datetime"], input[type="datetime-local"], input[type="date"],
-input[type="month"], input[type="time"], input[type="week"], input[type="number"],
-input[type="email"], input[type="url"], input[type="search"], input[type="tel"],
-input[type="color"], .uneditable-input {
-  color: var(--color-dark-1);
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    color: var(--color-dark-1);
 }
 
 select {
-  border: 1px solid var(--bg-dark-5);
-  background-color: var(--bg-dark-3);
+    border: 1px solid var(--bg-dark-5);
+    background-color: var(--bg-dark-3);
 }
 
-select:focus, input[type="file"]:focus,
-input[type="radio"]:focus, input[type="checkbox"]:focus {
-  outline: none;
-  border-color: rgba(255, 255, 255, 0.5);
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Button groups */
 .btn {
-  text-shadow: none;
-  filter: contrast(0.6);
+    text-shadow: none;
+    filter: contrast(0.6);
 }
 
 .btn:focus {
-  outline: none;
+    outline: none;
 }
 
-.btn-group>.btn:not(.btn-info) {
-  background: #2f2f2f;
-  border-color: var(--bg-dark-3);
-  color: var(--bs-white);
+.btn-group > .btn:not(.btn-info) {
+    background: #2f2f2f;
+    border-color: var(--bg-dark-3);
+    color: var(--bs-white);
 }
 
 .btn-light {
-  color: var(--bs-white);
-  background-color: #212529;
-  border-color: #212529 !important;
+    color: var(--bs-white);
+    background-color: #212529;
+    border-color: #212529 !important;
 }
 
 .btn-light:hover {
-  color: var(--bs-white);
-  background-color: #1c1f23;
-  border-color: #1a1e21 !important;
+    color: var(--bs-white);
+    background-color: #1c1f23;
+    border-color: #1a1e21 !important;
 }
 
 .btn-light:focus {
-  color: var(--bs-white);
-  background-color: #1c1f23;
-  border-color: #1a1e21 !important;
-  box-shadow: 0 0 0 0.25rem rgb(66 70 73 / 50%);
+    color: var(--bs-white);
+    background-color: #1c1f23;
+    border-color: #1a1e21 !important;
+    box-shadow: 0 0 0 0.25rem rgb(66 70 73 / 50%);
 }
 
 .btn-link {
-  color: #63daff;
+    color: #63daff;
 }
 
 /* Pagination links */
 .pagination li .page-link {
-  color: var(--color-dark-1);
-  background-color: var(--bg-dark-1);
-  border-color: #292929;
+    color: var(--color-dark-1);
+    background-color: var(--bg-dark-1);
+    border-color: #292929;
 }
 
 .pagination li.active .page-link {
-  color: var(--color-dark-1);
-  background: var(--bg-dark-4);
+    color: var(--color-dark-1);
+    background: var(--bg-dark-4);
 }
 
 .pagination li:not(.active) .page-link:hover {
-  background-color: var(--bg-dark-4);
-  color: var(--bs-white);
+    background-color: var(--bg-dark-4);
+    color: var(--bs-white);
 }
 
 /* Tables */
 .table {
-  color: var(--color-dark-1);
+    color: var(--color-dark-1);
 }
 
-.table-striped tbody>tr:nth-child(odd)>td, .table-striped tbody>tr:nth-child(odd)>th {
-  background-color: var(--bg-dark-2);
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+    background-color: var(--bg-dark-2);
 }
 
-.table th, .table td {
-  color: var(--color-dark-1);
-  border-top: 1px solid var(--bg-dark-4);
+.table th,
+.table td {
+    color: var(--color-dark-1);
+    border-top: 1px solid var(--bg-dark-4);
 }
 
 .table th {
-  border-bottom-color: var(--bg-dark-4) !important;
+    border-bottom-color: var(--bg-dark-4) !important;
 }
 
-tbody, tfoot, th, thead, tr {
-  border-color: var(--bg-dark-4);
+tbody,
+tfoot,
+th,
+thead,
+tr {
+    border-color: var(--bg-dark-4);
 }
 
 div#machines thead,
 div#tasks thead {
-  background-color: var(--bg-dark-1);
+    background-color: var(--bg-dark-1);
 }
 
 /* Background colors for running tasks on test run pages */
-.table tbody tr.info>td {
-  background-color: #0f3373;
+.table tbody tr.info > td {
+    background-color: #0f3373;
 }
 
 /* Override - test tasks table - purged tasks red background */
 td[style*="background-color:#ffebeb"] {
-  background: #5f1c1c !important;
+    background: #5f1c1c !important;
 }
 
 /* Override - test tasks table - residuals green */
 td[style*="background-color:#44EB44"] {
-  background: #108e10 !important;
+    background: #108e10 !important;
 }
 
 /* Override - test tasks table - residuals yellow */
 td[style*="background-color:yellow"] {
-  background: #828a04 !important;
+    background: #828a04 !important;
 }
 
 /* Override - test tasks table - residuals red */
 td[style*="background-color:#FF6A6A"] {
-  background: #d65252 !important;
+    background: #d65252 !important;
 }
 
 /* Override - "green" description text in /nns page */
 .default-net {
-  color: var(--bg-dark-1);
+    color: var(--bg-dark-1);
 }
 
 /* Darken white box */
 pre[style*="white-space:nowrap"] {
-  background: var(--bg-dark-3) !important;
-  color: var(--color-dark-1) !important;
+    background: var(--bg-dark-3) !important;
+    color: var(--color-dark-1) !important;
 }
 
 /* Darker yellow */
 pre[style*="background-color:yellow"] {
-  background: #efef22cc !important;
-  color: var(--bg-dark-3) !important;
+    background: #efef22cc !important;
+    color: var(--bg-dark-3) !important;
 }
 
 /* Darker red */
 pre[style*="background-color:#FF6A6A"] {
-  background: #ed6464cc !important;
-  color: var(--bg-dark-3) !important;
+    background: #ed6464cc !important;
+    color: var(--bg-dark-3) !important;
 }
 
 /* Darker green */
 pre[style*="background-color:#44EB44"] {
-  background: #75bb76 !important;
-  color: var(--bg-dark-3) !important;
+    background: #75bb76 !important;
+    color: var(--bg-dark-3) !important;
 }
 
 /* Darker blue */
 pre[style*="background-color:#66CCFF"] {
-  background: #88d7ffcc !important;
-  color: var(--bg-dark-3) !important;
+    background: #88d7ffcc !important;
+    color: var(--bg-dark-3) !important;
 }
 
 /* Darken pink border */
 pre[style*="border-color:Pink"] {
-  border-color: #ffffffcc !important;
+    border-color: #ffffffcc !important;
 }
 
-.input-group-lg>.form-select, .input-group-sm>.form-select {
-  background: #2f2f2f;
-  color: rgb(177, 173, 167);
+.input-group-lg > .form-select,
+.input-group-sm > .form-select {
+    background: #2f2f2f;
+    color: rgb(177, 173, 167);
 }
 
 #create-new-test textarea {
-  background: rgb(68, 68, 68);
-  border-color: rgb(16, 16, 16);
-  color: rgb(177, 173, 167);
+    background: rgb(68, 68, 68);
+    border-color: rgb(16, 16, 16);
+    color: rgb(177, 173, 167);
 }
 
 .form-control[readonly] {
-  background: rgb(68, 68, 68);
-  color: rgb(177, 173, 167);
+    background: rgb(68, 68, 68);
+    color: rgb(177, 173, 167);
 }
 
 option.grayedoutoption {

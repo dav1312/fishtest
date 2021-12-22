@@ -1,214 +1,217 @@
-
 /* Bootstrap responsive override */
 @media (max-width: 850px) {
-  body {
-    padding: 0;
-  }
+    body {
+        padding: 0;
+    }
 
-  .mainnavbar .nav li {
-    margin-right: 4px
-  }
+    .mainnavbar .nav li {
+        margin-right: 4px;
+    }
 
-  .mainnavbar .nav li a,
-  .mainnavbar .nav li div {
-    font-size: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 30px;
-  }
+    .mainnavbar .nav li a,
+    .mainnavbar .nav li div {
+        font-size: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        line-height: 30px;
+    }
 
-  .mainnavbar .nav li a::before,
-  .mainnavbar .nav li div::before {
-    font-size: 14px
-  }
+    .mainnavbar .nav li a::before,
+    .mainnavbar .nav li div::before {
+        font-size: 14px;
+    }
 
-  .mainnavbar {
-    min-width: 50px !important;
-    width: 56px !important;
-  }
+    .mainnavbar {
+        min-width: 50px !important;
+        width: 56px !important;
+    }
 
-  .btn-group-sm>.btn, .btn-sm {
-    padding: 0 .25rem;
-  }
+    .btn-group-sm > .btn,
+    .btn-sm {
+        padding: 0 0.25rem;
+    }
 
-  .nav-header,
-  .mainnavbar::-webkit-scrollbar {
-    display: none !important
-  }
+    .nav-header,
+    .mainnavbar::-webkit-scrollbar {
+        display: none !important;
+    }
 
-  .nav .nav-header:not(:first-child) + li {
-    border-top: 1px solid #65656540;
-  }
+    .nav .nav-header:not(:first-child) + li {
+        border-top: 1px solid #65656540;
+    }
 }
 
 body {
-  font-size: 14px;
-  transition: background 0.2s ease-in-out;
-  display: inline-flex;
-  width: 100%;
+    font-size: 14px;
+    transition: background 0.2s ease-in-out;
+    display: inline-flex;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {
-  width: 16px;
+    width: 16px;
 }
 
 ::-webkit-scrollbar-corner {
-  background: transparent
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  min-height: 50px;
-  border-radius: 20px;
-  background-color: #adadad;
-  border: 4px solid var(--bs-white);
+    min-height: 50px;
+    border-radius: 20px;
+    background-color: #adadad;
+    border: 4px solid var(--bs-white);
 }
 
 .contentbase {
-  overflow: hidden scroll;
-  height: 100vh;
-  width: 100%;
+    overflow: hidden scroll;
+    height: 100vh;
+    width: 100%;
 }
 
 .contentbase main > h2 {
-  top: 0;
-  background: var(--bs-body-bg);
-  z-index: 1000;
-  padding: 5px 0;
-  box-shadow: 0px 3px 10px var(--bs-body-bg);
+    top: 0;
+    background: var(--bs-body-bg);
+    z-index: 1000;
+    padding: 5px 0;
+    box-shadow: 0px 3px 10px var(--bs-body-bg);
 }
 
 .contentbase > .container-fluid {
-  padding-right: 0;
+    padding-right: 0;
 }
 
 .overflow-auto {
-  max-height: 80vh;
+    max-height: 80vh;
 }
 
 .sticky-top {
-  top: -1px;
-  background: var(--bs-body-bg);
+    top: -1px;
+    background: var(--bs-body-bg);
 }
 
 .btn.btn-sm.btn-light {
-  min-width: 53px;
+    min-width: 53px;
 }
 
 a {
-  color: #409e42;
-  text-decoration: none;
+    color: #409e42;
+    text-decoration: none;
 }
 
 a:hover {
-  color: #5f9960;
+    color: #5f9960;
 }
 
 a:focus {
-  color: #497449;
+    color: #497449;
 }
 
 .contentbase .default-net {
-  background-color: palegreen !important;
+    background-color: palegreen !important;
 }
 
 .contentbase .default-net a {
-  color: black;
+    color: black;
 }
 
-h2, h3, h4 {
-  font-weight: bold;
+h2,
+h3,
+h4 {
+    font-weight: bold;
 }
 
 legend {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
 }
 
 .flash-message {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .elo-results {
-  background: #f5f5f5;
-  font-size: 12px;
-  margin: 2px;
-  padding: 1px;
-  line-height: 13px;
-  padding: 3px;
+    background: #f5f5f5;
+    font-size: 12px;
+    margin: 2px;
+    padding: 1px;
+    line-height: 13px;
+    padding: 3px;
 }
 
 h3 + .row-fluid .rounded.elo-results {
-  font-size: 14px;
-  line-height: normal;
+    font-size: 14px;
+    line-height: normal;
 }
 
 .checkbox.inline {
-  margin-left: 20px;
-  margin-right: 0;
+    margin-left: 20px;
+    margin-right: 0;
 }
 
 #non_default-button {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
-.run-date, .run-diff {
-  text-align: center;
+.run-date,
+.run-diff {
+    text-align: center;
 }
 
 /* Left navigation */
 .mainnavbar {
-  min-width: 180px;
-  padding: 20px 0 0 0;
-  overflow: hidden scroll;
-  height: 100vh;
-  background-color: var(--bs-gray-300);
-  transition: width 0.3s;
-  user-select: none;
+    min-width: 180px;
+    padding: 20px 0 0 0;
+    overflow: hidden scroll;
+    height: 100vh;
+    background-color: var(--bs-gray-300);
+    transition: width 0.3s;
+    user-select: none;
 }
 
 .mainnavbar::-webkit-scrollbar-thumb {
-  border: 6px solid var(--bs-gray-300);
+    border: 6px solid var(--bs-gray-300);
 }
 
 .mainnavbar::-webkit-scrollbar-track {
-  background-color: var(--bs-gray-300);
+    background-color: var(--bs-gray-300);
 }
 
 .contentbase::-webkit-scrollbar-thumb {
-  border: 4px solid var(--bs-body-bg);
+    border: 4px solid var(--bs-body-bg);
 }
 
 .contentbase::-webkit-scrollbar-track {
-  background-color: var(--bs-body-bg);
+    background-color: var(--bs-body-bg);
 }
 
 .nav-list {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .nav li.nav-header {
-  color: #2e2e2e;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 3px;
-  padding-top: 4px;
-  padding-left: 8px;
-  margin-top: 4px;
+    color: #2e2e2e;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    padding-top: 4px;
+    padding-left: 8px;
+    margin-top: 4px;
 }
 
 .nav-header:not(:first-child) {
-  border-top: 1px solid #65656540;
+    border-top: 1px solid #65656540;
 }
 
 .nav li {
-  margin-left: 4px;
-  margin-right: 0;
+    margin-left: 4px;
+    margin-right: 0;
 }
 
 #change-color-theme:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* Icons */
@@ -216,262 +219,275 @@ h3 + .row-fluid .rounded.elo-results {
 #diff-num-comments + a::before,
 #copy-diff::before,
 .mainnavbar #change-color-theme > div::before {
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  width: 18px;
-  text-align: center;
-  margin-right: 4px;
-  font-weight: 900;
-  font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    width: 18px;
+    text-align: center;
+    margin-right: 4px;
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
 }
 
 .mainnavbar [href="/tests"]::before {
-  content: "\f00b";
+    content: "\f00b";
 }
 
 .mainnavbar [href="/tests/finished?success_only=1"]::before {
-  content: "\f14a";
+    content: "\f14a";
 }
 
 .mainnavbar [href="/tests/finished?yellow_only=1"]::before {
-  content: "\f3fd";
+    content: "\f3fd";
 }
 
 .mainnavbar [href="/tests/finished?ltc_only=1"]::before {
-  content: "\f017";
+    content: "\f017";
 }
 
 .mainnavbar [href^="/tests/user/"]::before {
-  content: "\f0c3";
+    content: "\f0c3";
 }
 
 .mainnavbar [href="/tests/run"]::before {
-  content: "\f067";
+    content: "\f067";
 }
 
 .mainnavbar [href="/upload"]::before {
-  content: "\f093";
+    content: "\f093";
 }
 
 .mainnavbar [href="/users"]::before {
-  content: "\f0c0";
+    content: "\f0c0";
 }
 
 .mainnavbar [href="/users/monthly"]::before {
-  content: "\f091";
+    content: "\f091";
 }
 
 .mainnavbar [href="/actions"]::before {
-  content: "\f46d";
+    content: "\f46d";
 }
 
 .mainnavbar [href="/nns"]::before {
-  content: "\f5dc";
+    content: "\f5dc";
 }
 
 .mainnavbar [href^="/html/SPRTcalculator.html"]::before {
-  content: "\f1ec";
+    content: "\f1ec";
 }
 
-.mainnavbar [href="https://github.com/glinscott/fishtest"]::before {
-  content: "\f441";
+.mainnavbar [href="https://github.com/glinscott/fishtest"]::before
+{
+    content: "\f441";
 }
 
-.mainnavbar [href="https://github.com/glinscott/nnue-pytorch"]::before {
-  content: "\f3e2";
-  font-family: "Font Awesome 5 Brands";
-  font-weight: 400;
+.mainnavbar [href="https://github.com/glinscott/nnue-pytorch"]::before
+{
+    content: "\f3e2";
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
 }
 
-.mainnavbar [href="https://github.com/official-stockfish/books"]::before {
-  content: "\f02d";
+.mainnavbar [href="https://github.com/official-stockfish/books"]::before
+{
+    content: "\f02d";
 }
 
-.mainnavbar [href="https://github.com/official-stockfish/Stockfish"]::before {
-  content: "\f578";
+.mainnavbar [href="https://github.com/official-stockfish/Stockfish"]::before
+{
+    content: "\f578";
 }
 
-.mainnavbar [href="https://github.com/glinscott/fishtest/wiki"]::before {
-  content: "\f266";
-  font-family: "Font Awesome 5 Brands";
-  font-weight: 400;
+.mainnavbar [href="https://github.com/glinscott/fishtest/wiki"]::before
+{
+    content: "\f266";
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
 }
 
-.mainnavbar [href="https://groups.google.com/g/fishcooking"]::before {
-  content: "\f086";
+.mainnavbar [href="https://groups.google.com/g/fishcooking"]::before
+{
+    content: "\f086";
 }
 
-.mainnavbar [href="https://groups.google.com/g/fishcooking-results"]::before {
-  content: "\f1da";
+.mainnavbar [href="https://groups.google.com/g/fishcooking-results"]::before
+{
+    content: "\f1da";
 }
 
-.mainnavbar [href="https://hxim.github.io/Stockfish-Evaluation-Guide/"]::before {
-  content: "\f518";
+.mainnavbar [href="https://hxim.github.io/Stockfish-Evaluation-Guide/"]::before
+{
+    content: "\f518";
 }
 
-.mainnavbar [href="https://github.com/glinscott/fishtest/wiki/Regression-Tests"]::before {
-  content: "\f201";
+.mainnavbar [href="https://github.com/glinscott/fishtest/wiki/Regression-Tests"]::before
+{
+    content: "\f201";
 }
 
-.mainnavbar [href="https://abrok.eu/stockfish/"]::before {
-  content: "\f019";
+.mainnavbar [href="https://abrok.eu/stockfish/"]::before
+{
+    content: "\f019";
 }
 
-.mainnavbar [href="https://stockfishchess.org/download/"]::before {
-  content: "\f019";
+.mainnavbar [href="https://stockfishchess.org/download/"]::before
+{
+    content: "\f019";
 }
 
-.mainnavbar [href="https://stockfishchess.org/get-involved/"]::before {
-  content: "\f4c4";
+.mainnavbar [href="https://stockfishchess.org/get-involved/"]::before
+{
+    content: "\f4c4";
 }
 
-.mainnavbar [href="https://discord.gg/nv8gDtt"]::before {
-  content: "\f392";
-  font-family: "Font Awesome 5 Brands";
-  font-weight: 400;
+.mainnavbar [href="https://discord.gg/nv8gDtt"]::before
+{
+    content: "\f392";
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
 }
 
 .mainnavbar [href="/signup"]::before {
-  content: "\f234";
+    content: "\f234";
 }
 
 .mainnavbar [href="/login"]::before {
-  content: "\f2f6";
+    content: "\f2f6";
 }
 
 .mainnavbar [href="/user"]::before {
-  content: "\f007";
+    content: "\f007";
 }
 
 .mainnavbar [href="/logout"]::before {
-  content: "\f2f5";
+    content: "\f2f5";
 }
 
 .mainnavbar [href="/pending"]::before {
-  content: "\f252";
+    content: "\f252";
 }
 
 .mainnavbar #change-color-theme #sun::before {
-  content: "\f185";
+    content: "\f185";
 }
 
 .mainnavbar #change-color-theme #moon::before {
-  content: "\f186";
+    content: "\f186";
 }
 
 #diff-num-comments + a::before {
-  content: "\f09b";
-  font-family: "Font Awesome 5 Brands";
-  font-weight: 400;
+    content: "\f09b";
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
 }
 
 #copy-diff::before {
-  content: "\f328";
+    content: "\f328";
 }
 
 /* Links in the left navigation */
 .nav li a,
 .nav li div {
-  display: flex;
-  padding: 3px 4px 3px 12px;
-  white-space: nowrap;
-  color: var(--bs-gray-800);
-  border-radius: .25rem;
+    display: flex;
+    padding: 3px 4px 3px 12px;
+    white-space: nowrap;
+    color: var(--bs-gray-800);
+    border-radius: 0.25rem;
 }
 
 .nav li a:hover,
 .nav li div:hover {
-  background: var(--bs-light);
-  color: var(--bs-body-color);
+    background: var(--bs-light);
+    color: var(--bs-body-color);
 }
 
 .nav li a:focus,
 .nav li div:focus {
-  background: var(--bs-white);
+    background: var(--bs-white);
 }
 
 .nav li [href="/logout"]:hover {
-  color: var(--bs-danger);
+    color: var(--bs-danger);
 }
 
 th {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 td {
-  border-color: transparent
+    border-color: transparent;
 }
 
 .run-view {
-  word-break: break-word;
-  min-width: 100px;
+    word-break: break-word;
+    min-width: 100px;
 }
 
 /* tests_view page */
 .spsa-param-row td {
-  text-align: right;
-  padding-right: 10px;
+    text-align: right;
+    padding-right: 10px;
 }
 
 .spsa-param-row td:first-child {
-  text-align: left;
+    text-align: left;
 }
 
 #machines {
-  max-height: 45vh;
+    max-height: 45vh;
 }
 
 #diff-contents {
-  max-height: 70vh;
+    max-height: 70vh;
 }
 
 #tasks {
-  max-height: 60vh;
-  margin-bottom: 12px;
+    max-height: 60vh;
+    margin-bottom: 12px;
 }
 
 /* Background colors for running tasks on test run pages */
-.table tbody tr.info>td {
-  background-color: #cff4fc;
+.table tbody tr.info > td {
+    background-color: #cff4fc;
 }
 
 /* Pagination links */
 .page-link {
-  color: var(--bs-gray-700);
-  transition: .1s;
-  user-select: none;
+    color: var(--bs-gray-700);
+    transition: 0.1s;
+    user-select: none;
 }
 
 .page-link:hover,
 .page-link:focus {
-  color: var(--bs-gray-900);
-  transition: .1s;
+    color: var(--bs-gray-900);
+    transition: 0.1s;
 }
 
 .pagination li.disabled .page-link,
 .pagination li.disabled .page-link:hover {
-  color: rgb(153, 153, 153) !important;
-  background: transparent !important;
+    color: rgb(153, 153, 153) !important;
+    background: transparent !important;
 }
 
 .pagination li.active .page-link {
-  color: rgb(153, 153, 153);
-  background: rgb(245, 245, 245);
+    color: rgb(153, 153, 153);
+    background: rgb(245, 245, 245);
 }
 
 .pagination li:not(.active) .page-link:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .pagination > li:first-child a {
-  border-radius: .25rem 0 0 .25rem
+    border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .pagination > li:last-child a {
-  border-radius: 0 .25rem .25rem 0
+    border-radius: 0 0.25rem 0.25rem 0;
 }
 
 option.grayedoutoption {
