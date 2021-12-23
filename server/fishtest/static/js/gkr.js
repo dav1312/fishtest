@@ -1,10 +1,8 @@
 /*
-
-From http://www.mathworks.com/matlabcentral/fileexchange/19195-kernel-smoothing-regression
-Translated from Matlab code
-Original implementation by Yi Cao
-
-*/
+ * From http://www.mathworks.com/matlabcentral/fileexchange/19195-kernel-smoothing-regression
+ * Translated from Matlab code
+ * Original implementation by Yi Cao
+ */
 
 function median(values_) {
 

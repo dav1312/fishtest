@@ -1,9 +1,9 @@
 "use strict";
 
 /*
-  This program computes passing probabilities and expected running times for SPRT tests.
-  See http://hardy.uhasselt.be/Fishtest/sprta.pdf for more information.
-*/
+ * This program computes passing probabilities and expected running times for SPRT tests.
+ * See http://hardy.uhasselt.be/Fishtest/sprta.pdf for more information.
+ */
 
 const nelo_divided_by_nt=800/Math.log(10);
 
@@ -19,7 +19,7 @@ function PT(LA,LB,h){
     // Universal functions
     var P,T;
     if(Math.abs(h*(LA-LB))<1e-6){
-	// avoid division by zero
+	    // Avoid division by zero
         P=-LA/(LB-LA);
         T=-LA*LB;
     }else{
@@ -43,7 +43,7 @@ function Sprt(alpha,beta,elo0,elo1,draw_ratio,rms_bias,elo_model) {
 	this.elo1=elo1;
 	this.score0=L(elo0);
 	this.score1=L(elo1);
-    }else{  // Assume "Normalized"
+    }else{ // Assume "Normalized"
 	var nt0=elo0/nelo_divided_by_nt;
 	var nt1=elo1/nelo_divided_by_nt;
 	var sigma=Math.sqrt(this.variance);

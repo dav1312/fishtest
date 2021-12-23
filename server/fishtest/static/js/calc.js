@@ -78,7 +78,7 @@ function draw_charts(){
     var elo_start=Math.floor(elo0-d/3);
     var elo_end=Math.ceil(elo1+d/3);
     var N=(elo_end-elo_start)<=5?20:10;
-    // pseudo globals
+    // Pseudo globals
     pass_chart.elo_start=elo_start;
     pass_chart.elo_end=elo_end;
     const specials=[elo0,elo1];
@@ -125,7 +125,7 @@ function contains(rect,x,y){
 }
 
 function handle_tooltips(e){
-    // generic mouse events handler
+    // Generic mouse events handler
     e.stopPropagation();
     if(!ready()){
 	return;

@@ -1,5 +1,7 @@
-// https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
-// https://stackoverflow.com/questions/40201533/sort-version-dotted-number-strings-in-javascript
+/*
+ * https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
+ * https://stackoverflow.com/questions/40201533/sort-version-dotted-number-strings-in-javascript
+ */
 const getCellValue = (tr, idx) => tr.children[idx].dataset.diff || tr.children[idx].innerText || tr.children[idx].textContent;
 const padDotVersion = (dn) => dn.split('.').map(n => +n+1000).join('');
 let p1, p2;
@@ -12,7 +14,7 @@ const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
 )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
 $(() => {
-    // clicking on table headers sorts the rows
+    // Clicking on table headers sorts the rows
     $(document).on('click', 'th', (event) => {
         const th = $(event.currentTarget)[0];
         const table = th.closest('table');
@@ -22,7 +24,7 @@ $(() => {
             .forEach(tr => body.appendChild(tr));
     });
 
-    // clicking Show/Hide on Pending + Paused tests and Machines sections toggles them
+    // Clicking Show/Hide on Pending + Paused tests and Machines sections toggles them
     $("#pending-button").click(function() {
         var active = $(this).text().trim() === 'Hide';
         $(this).text(active ? 'Show' : 'Hide');
@@ -56,9 +58,11 @@ $(() => {
         $.cookie('machines_state', $(this).text().trim());
     });
 
-    // Click the sun/moon icons to change the color theme of the site
-    // SRI hash for "fishtest/server/fishtest/static/css/theme.dark.css":
-    // openssl dgst -sha256 -binary theme.dark.css | openssl base64 -A
+    /*
+     * Click the sun/moon icons to change the color theme of the site
+     * SRI hash for "fishtest/server/fishtest/static/css/theme.dark.css":
+     * openssl dgst -sha256 -binary theme.dark.css | openssl base64 -A
+     */
     let theme = $.cookie('theme') || 'light';
     $("#change-color-theme").click(function() {
       if (theme === 'light') {
