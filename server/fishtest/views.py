@@ -394,46 +394,45 @@ def user(request):
         return HTTPFound(location=request.route_url("tests"))
     user_data = request.userdb.get_user(user_name)
     if "user" in request.POST:
-        if profile:
 
-            new_password = request.params.get("password")
-            new_password_verify = request.params.get("password2", "")
-            new_email = request.params.get("email")
+        new_password = request.params.get("password")
+        new_password_verify = request.params.get("password2", "")
+        new_email = request.params.get("email")
 
-            if len(new_password) > 0:
-                if new_password == new_password_verify:
-                    strong_password, password_err = password_strength(
-                        new_password,
-                        user_name,
-                        user_data["email"],
-                        (new_email if len(new_email) > 0 else None),
-                    )
-                    if strong_password:
-                        user_data["password"] = new_password
-                        request.session.flash("Success! Password updated")
-                    else:
-                        request.session.flash(
-                            "Error! Weak password: " + password_err, "error"
-                        )
-                        return HTTPFound(location=request.route_url("tests"))
+        if len(new_password) > 0:
+            if new_password == new_password_verify:
+                strong_password, password_err = password_strength(
+                    new_password,
+                    user_name,
+                    user_data["email"],
+                    (new_email if len(new_email) > 0 else None),
+                )
+                if strong_password:
+                    user_data["password"] = new_password
+                    request.session.flash("Success! Password updated")
                 else:
                     request.session.flash(
-                        "Error! Matching verify password required", "error"
+                        "Error! Weak password: " + password_err, "error"
                     )
                     return HTTPFound(location=request.route_url("tests"))
+            else:
+                request.session.flash(
+                    "Error! Matching verify password required", "error"
+                )
+                return HTTPFound(location=request.route_url("tests"))
 
-            if len(new_email) > 0 and user_data["email"] != new_email:
-                email_is_valid, validated_email = email_valid(new_email)
-                if not email_is_valid:
-                    request.session.flash(
-                        "Error! Invalid email: " + validated_email, "error"
-                    )
-                    return HTTPFound(location=request.route_url("tests"))
-                else:
-                    user_data["email"] = validated_email
-                    request.session.flash("Success! Email updated")
+        if len(new_email) > 0 and user_data["email"] != new_email:
+            email_is_valid, validated_email = email_valid(new_email)
+            if not email_is_valid:
+                request.session.flash(
+                    "Error! Invalid email: " + validated_email, "error"
+                )
+                return HTTPFound(location=request.route_url("tests"))
+            else:
+                user_data["email"] = validated_email
+                request.session.flash("Success! Email updated")
 
-        else:
+        if not profile:
             user_data["blocked"] = "blocked" in request.POST
             request.userdb.last_pending_time = 0
             request.actiondb.block_user(

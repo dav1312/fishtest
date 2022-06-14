@@ -32,46 +32,45 @@
   </header>
 
   <form action="${request.url}" method="POST">
-    % if profile:
-      <div class="form-floating mb-3">
-        <input
-          type="email"
-          class="form-control mb-3"
-          id="email"
-          name="email"
-          value="${user['email']}"
-          placeholder="Email"
-          required="required"
-        />
-        <label for="email" class="d-flex align-items-end">Email</label>
-      </div>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control mb-3"
+        id="email"
+        name="email"
+        value="${user['email']}"
+        placeholder="Email"
+        required="required"
+      />
+      <label for="email" class="d-flex align-items-end">Email</label>
+    </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control mb-3"
-          id="password"
-          name="password"
-          placeholder="Password"
-          pattern=".{8,}"
-          title="Eight or more characters: a password too simple or trivial to guess will be rejected"
-          required="required"
-        />
-        <label for="password" class="d-flex align-items-end">New Password</label>
-      </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control mb-3"
+        id="password"
+        name="password"
+        placeholder="Password"
+        pattern=".{8,}"
+        title="Eight or more characters: a password too simple or trivial to guess will be rejected"
+        required="required"
+      />
+      <label for="password" class="d-flex align-items-end">New Password</label>
+    </div>
 
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          class="form-control mb-3"
-          id="password2"
-          name="password2"
-          placeholder="Repeat Password"
-          required="required"
-        />
-        <label for="password2" class="d-flex align-items-end">Repeat Password</label>
-      </div>
-    % else:
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control mb-3"
+        id="password2"
+        name="password2"
+        placeholder="Repeat Password"
+        required="required"
+      />
+      <label for="password2" class="d-flex align-items-end">Repeat Password</label>
+    </div>
+    % if not profile:
       <%
         blocked = user['blocked'] if 'blocked' in user else False
         checked = 'checked' if blocked else ''
