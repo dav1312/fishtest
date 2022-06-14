@@ -2,9 +2,9 @@ import sys
 import threading
 import time
 from datetime import datetime
+import hashlib
 
 from pymongo import ASCENDING
-
 
 class UserDb:
     def __init__(self, db):
@@ -34,9 +34,13 @@ class UserDb:
         with self.user_lock:
             self.cache.clear()
 
+    # use sha256 for now
+    def hash_password(self, password):
+        return hashlib.sha256(password.encode("utf-8")).hexdigest()
+
     def authenticate(self, username, password):
         user = self.find(username)
-        if not user or user["password"] != password:
+        if not user or user["password"] != self.hash_password(password):
             sys.stderr.write("Invalid login: '{}' '{}'\n".format(username, password))
             return {"error": "Invalid password for user: {}".format(username)}
         if "blocked" in user and user["blocked"]:
@@ -83,7 +87,7 @@ class UserDb:
             self.users.insert_one(
                 {
                     "username": username,
-                    "password": password,
+                    "password": self.hash_password(password),
                     "registration_time": datetime.utcnow(),
                     "blocked": True,
                     "email": email,
