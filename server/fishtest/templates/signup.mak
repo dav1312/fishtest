@@ -4,11 +4,7 @@
   document.title = 'Register | Stockfish Testing';
 </script>
 
-<%block name="head">
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-  ## Remove this when base.mak has the viewport meta tag
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</%block>
+
 
 <div class="col-limited-size">
   <header class="text-md-center py-2">
@@ -78,8 +74,7 @@
       <label for="email" class="d-flex align-items-end">Email</label>
     </div>
 
-    <div class="g-recaptcha mb-3"
-         data-sitekey="6LePs8YUAAAAABMmqHZVyVjxat95Z1c_uHrkugZM"></div>
+
 
     <button type="submit" class="btn btn-primary w-100">Register</button>
   </form>

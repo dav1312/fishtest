@@ -2,9 +2,10 @@ import sys
 import threading
 import time
 from datetime import datetime
+import re
 
 from pymongo import ASCENDING
-
+import bcrypt
 
 class UserDb:
     def __init__(self, db):
@@ -34,9 +35,20 @@ class UserDb:
         with self.user_lock:
             self.cache.clear()
 
+    def hash_password(self, password):
+        return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt(4))
+
+    def check_password(self, password, hashed_password):
+        return bcrypt.checkpw(password.encode("utf-8"), hashed_password)
+
     def authenticate(self, username, password):
         user = self.find(username)
-        if not user or user["password"] != password:
+        if not re.match(r"^\$2[ayb]\$[0-9]+\$.{53}$", user["password"]):
+            user["password"] = self.hash_password(user["password"]).decode("utf-8")
+            self.save_user(user)
+        valid_password = self.check_password(password, user["password"].encode("utf-8"))
+
+        if not user or not valid_password:
             sys.stderr.write("Invalid login: '{}' '{}'\n".format(username, password))
             return {"error": "Invalid password for user: {}".format(username)}
         if "blocked" in user and user["blocked"]:
@@ -80,10 +92,11 @@ class UserDb:
         try:
             if self.find(username):
                 return False
+            hashed_password = self.hash_password(password).decode("utf-8")
             self.users.insert_one(
                 {
                     "username": username,
-                    "password": password,
+                    "password": hashed_password,
                     "registration_time": datetime.utcnow(),
                     "blocked": True,
                     "email": email,
