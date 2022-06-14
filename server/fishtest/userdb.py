@@ -40,6 +40,13 @@ class UserDb:
 
     def authenticate(self, username, password):
         user = self.find(username)
+        # if the user's password is not 64 characters, it's not hashed
+        # hash it and update the stored password
+        if len(user["password"]) != 64:
+            user["password"] = self.hash_password(password)
+            self.save_user(user)
+            user = self.find(username)
+
         if not user or user["password"] != self.hash_password(password):
             sys.stderr.write("Invalid login: '{}' '{}'\n".format(username, password))
             return {"error": "Invalid password for user: {}".format(username)}
