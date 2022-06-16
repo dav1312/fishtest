@@ -248,6 +248,18 @@ input[type="checkbox"]:focus {
   color: #63daff;
 }
 
+.modal-content {
+  background-color: var(--bg-dark-3);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--bg-dark-5);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--bg-dark-5);
+}
+
 /* Pagination links */
 .pagination li .page-link {
   color: var(--color-dark-1);

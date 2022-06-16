@@ -77,17 +77,25 @@
             <tr>
               % if show_delete:
                   <td style="width: 1%;" class="run-button run-deny">
-                    <div class="dropdown">
-                      <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="dropdown">
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <div class="dropdown-menu" role="menu">
-                        <form action="/tests/delete" method="POST" style="display: inline;">
-                          <input type="hidden" name="csrf_token"
-                                 value="${request.session.get_csrf_token()}" />
-                          <input type="hidden" name="run-id" value="${run['_id']}">
-                          <button type="submit" class="btn btn-danger btn-mini">Confirm</button>
-                        </form>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirm-modal-${run['_id']}">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <div class="modal fade" id="confirm-modal-${run['_id']}" tabindex="-1" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Confirm that you want to delete ${run['args']['new_tag'][:23]}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-footer">
+                            <form action="/tests/delete" class="mb-0" method="POST">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <input type="hidden" name="csrf_token" value="${request.session.get_csrf_token()}" />
+                              <input type="hidden" name="run-id" value="${run['_id']}">
+                              <button type="submit" class="btn btn-outline-danger">Confirm</button>
+                            </form>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </td>
