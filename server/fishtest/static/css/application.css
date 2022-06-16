@@ -447,6 +447,11 @@ td {
   background-color: #cff4fc;
 }
 
+.rows-striped > *:nth-child(odd) {
+  background-color: #0000000d;
+  color: var(--bs-gray-900);
+}
+
 /* Pagination links */
 .page-link {
   color: var(--bs-gray-700);

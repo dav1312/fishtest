@@ -53,7 +53,9 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
     <script src="/js/application.js?v=${cache_busters['js/application.js']}"
             integrity="sha384-${cache_busters['js/application.js']}"
             crossorigin="anonymous"
-	    defer></script>
+      defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%block name="head"/>
   </head>

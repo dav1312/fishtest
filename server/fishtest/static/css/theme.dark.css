@@ -283,7 +283,8 @@ input[type="checkbox"]:focus {
 }
 
 .table-striped tbody > tr:nth-child(odd) > td,
-.table-striped tbody > tr:nth-child(odd) > th {
+.table-striped tbody > tr:nth-child(odd) > th,
+.rows-striped > *:nth-child(odd) {
   background-color: var(--bg-dark-2);
   color: var(--color-dark-1);
 }

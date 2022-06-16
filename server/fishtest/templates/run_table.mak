@@ -70,13 +70,13 @@
 
   ${pagination()}
 
-  <div>
-    <table class="table table-striped table-sm">
-      <tbody>
-        % for run in runs:
-            <tr>
+  <div class="container-fluid rows-striped g-0">
+    % for run in runs:
+        <div class="row g-1 mb-2">
+          <div class="col-lg-3">
+            <div class="row g-1">
               % if show_delete:
-                  <td style="width: 1%;" class="run-button run-deny">
+                  <div class="col">
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirm-modal-${run['_id']}">
                       <i class="fas fa-trash-alt"></i>
                     </button>
@@ -98,56 +98,38 @@
                         </div>
                       </div>
                     </div>
-                  </td>
+                  </div>
 
               % endif
 
-              <td style="width: 6%;" class="run-date">
-                ${run['start_time'].strftime("%y-%m-%d")}
-              </td>
+              <div class="col">${run['start_time'].strftime("%y-%m-%d")}</div>
+              <div class="col"><a class="text-break" href="/tests/user/${run['args'].get('username', '')}" title="${run['args'].get('username', '')}">${run['args'].get('username', '')[:3]}</a></div>
+              <div class="col"><a class="text-break" href="/tests/view/${run['_id']}">${run['args']['new_tag'][:23]}</a></div>
+              <div class="col"><a class="text-break" href="${h.diff_url(run)}" target="_blank" rel="noopener">diff</a></div>
+            </div>
+          </div>
 
-              <td style="width: 2%;" class="run-user">
-                <a href="/tests/user/${run['args'].get('username', '')}"
-                   title="${run['args'].get('username', '')}">
-                  ${run['args'].get('username', '')[:3]}
-                </a>
-              </td>
+          <div class="col-sm-9 col-lg-4 order-last order-lg-0"><%include file="elo_results.mak" args="run=run" /></div>
 
-              <td style="width: 16%;" class="run-view">
-                <a href="/tests/view/${run['_id']}">${run['args']['new_tag'][:23]}</a>
-              </td>
+          <div class="col-sm-3 col-lg-1">
+            % if 'sprt' in run['args']:
+                <a class="text-break" href="/tests/live_elo/${str(run['_id'])}" target="_blank">sprt</a>
+            % else:
+              ${run['args']['num_games']}
+            % endif
+            @ ${run['args']['tc']} th ${str(run['args'].get('threads',1))}
+            <br>
+            ${('cores: '+str(run['cores'])) if not run['finished'] and 'cores' in run else ''}
+          </div>
 
-              <td style="width: 2%;" class="run-diff">
-                <a href="${h.diff_url(run)}" target="_blank" rel="noopener">diff</a>
-              </td>
-
-              <td style="width: 1%;" class="run-elo">
-                <%include file="elo_results.mak" args="run=run" />
-              </td>
-
-              <td style="width: 11%;" class="run-live">
-                % if 'sprt' in run['args']:
-                    <a href="/tests/live_elo/${str(run['_id'])}" target="_blank">sprt</a>
-                % else:
-                  ${run['args']['num_games']}
-                % endif
-                @ ${run['args']['tc']} th ${str(run['args'].get('threads',1))}
-                <br>
-                ${('cores: '+str(run['cores'])) if not run['finished'] and 'cores' in run else ''}
-              </td>
-
-              <td class="run-info">
-                ${run['args'].get('info', '')}
-              </td>
-            </tr>
-        % endfor
-        % if alt and count == 0:
-          <tr>
-            <td> ${alt} </td>
-          </tr>
-        % endif
-      </tbody>
-    </table>
+          <div class="col order-last order-lg-0">${run['args'].get('info', '')}</div>
+        </div>
+    % endfor
+    % if alt and count == 0:
+      <div class="col-12">
+        <div class="alert alert-info" role="alert">${alt}</div>
+      </div>
+    % endif
   </div>
 
   ${pagination()}
