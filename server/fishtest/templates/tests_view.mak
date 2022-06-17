@@ -29,6 +29,27 @@ if 'spsa' in run['args']:
   <%include file="elo_results.mak" args="run=run" />
 </div>
 
+<link rel="stylesheet"
+      href="/css/live_elo.css?2&v=${cache_busters['css/live_elo.css']}"
+      integrity="sha384-${cache_busters['css/live_elo.css']}"
+      crossorigin="anonymous" />
+
+<div class="row">
+  <div class="d-flex align-items-center flex-column flex-sm-row" >
+    <div id="LLR_chart_div"></div>
+    <div style="width: 1em"></div>
+    <div id="LOS_chart_div"></div>
+    <div style="width: 1em"></div>
+    <div id="ELO_chart_div"></div>
+  </div>
+  <h4>Games: <span id="games"></span></h4>
+  <div class="error" id="error"></div>
+</div>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/js/live_elo.js?v=${cache_busters['js/live_elo.js']}"
+        integrity="sha384-${cache_busters['js/live_elo.js']}"
+        crossorigin="anonymous"></script>
+
 <div class="row">
   <div class="col-12 col-lg-9">
     <h4>Details</h4>
