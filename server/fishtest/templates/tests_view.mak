@@ -1,5 +1,10 @@
 <%inherit file="base.mak"/>
 
+## Remove this when base.mak has the viewport meta tag
+<%block name="head">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</%block>
+
 <%
 from fishtest.util import worker_name
 
@@ -30,12 +35,12 @@ if 'spsa' in run['args']:
 </div>
 
 <div class="row">
-  <div class="col-12 col-lg-9">
+  <div class="col-lg-9">
     <h4>Details</h4>
 
     <%! import markupsafe %>
 
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm text-break">
       % for arg in run_args:
           % if len(arg[2]) == 0:
               <tr>
@@ -103,7 +108,7 @@ if 'spsa' in run['args']:
     </table>
   </div>
 
-  <div class="col-12 col-lg-3">
+  <div class="col-lg-3">
     <h4>Actions</h4>
     <div class="row g-2 mb-2">
       % if not run['finished']:
@@ -232,14 +237,14 @@ if 'spsa' in run['args']:
 % endif
 
 <section id="diff-section" style="display: none">
-  <h4>
+  <h4 class="d-inline-block">
     <button id="diff-toggle" class="btn btn-sm btn-light border">Show</button>
     Diff
     <span id="diff-num-comments" style="display: none"></span>
-    <a href="${h.diff_url(run)}" class="btn btn-link" target="_blank" rel="noopener">View on Github</a>
-    <a href="javascript:" id="copy-diff" class="btn btn-link" style="margin-left: 10px; display: none">Copy apply-diff command</a>
-    <div class="btn btn-link copied" style="color: green; display: none">Copied command!</div>
   </h4>
+  <a href="${h.diff_url(run)}" id="view-on-github" target="_blank" rel="noopener">View on Github</a>
+  <a href="javascript:" id="copy-diff" style="margin-left: 10px; display: none">Copy apply-diff command</a>
+  <span class="text-success copied" style="display: none"><i class="fa-solid fa-check"></i></span>
   <pre id="diff-contents"><code class="diff"></code></pre>
 </section>
 
@@ -250,7 +255,7 @@ if 'spsa' in run['args']:
   Tasks ${totals}
 </h4>
 <div id="tasks"
-     class="overflow-auto"
+     class="table-responsive"
      style="${'' if tasks_shown else 'display: none;'}">
   <table class='table table-striped table-sm'>
     <thead class="sticky-top">

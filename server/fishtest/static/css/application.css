@@ -203,7 +203,7 @@ legend {
 
 /* Icons */
 .mainnavbar a::before,
-#diff-num-comments + a::before,
+#view-on-github::before,
 #copy-diff::before,
 .mainnavbar #change-color-theme > div::before {
   display: inline-block;
@@ -370,7 +370,7 @@ legend {
   content: "\f186";
 }
 
-#diff-num-comments + a::before {
+#view-on-github::before {
   content: "\f09b";
   font-family: "Font Awesome 5 Brands";
   font-weight: 400;

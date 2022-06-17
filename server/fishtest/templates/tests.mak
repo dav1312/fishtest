@@ -22,7 +22,7 @@
     </h4>
 
     <div id="machines"
-         class="overflow-auto"
+         class="table-responsive"
          style="${'' if machines_shown else 'display: none;'}">
       <%include file="machines_table.mak"/>
     </div>
