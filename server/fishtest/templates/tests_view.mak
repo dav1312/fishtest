@@ -112,7 +112,7 @@ if 'spsa' in run['args']:
     <h4>Actions</h4>
     <div class="row g-2 mb-2">
       % if not run['finished']:
-        <div class="col-md-6 mb-1">
+        <div class="col-12 col-sm col-lg-12 col-xxl">
           <form action="/tests/stop" method="POST">
             <input type="hidden" name="run-id" value="${run['_id']}">
             <button type="submit" class="btn btn-danger w-100 text-truncate">
@@ -122,7 +122,7 @@ if 'spsa' in run['args']:
         </div>
 
         % if not run.get('approved', False):
-          <div class="col-md-6 mb-1">
+          <div class="col-12 col-sm col-lg-12 col-xxl">
             <form action="/tests/approve" method="POST">
               <input type="hidden" name="run-id" value="${run['_id']}">
               <button type="submit" id="approve-btn"
@@ -133,14 +133,14 @@ if 'spsa' in run['args']:
           </div>
         % endif
       % else:
-        <div class="col-md-6 mb-1">
+        <div class="col-12 col-sm col-lg-12 col-xxl">
           <form action="/tests/purge" method="POST">
             <input type="hidden" name="run-id" value="${run['_id']}">
             <button type="submit" class="btn btn-danger w-100 text-truncate">Purge</button>
           </form>
         </div>
       % endif
-      <div class="col-md-6 mb-1">
+      <div class="col-12 col-sm col-lg-12 col-xxl">
         <a class="btn btn-light border w-100 text-truncate" href="/tests/run?id=${run['_id']}">Reschedule</a>
       </div>
     </div>
