@@ -35,12 +35,12 @@ if 'spsa' in run['args']:
 </div>
 
 <div class="row">
-  <div class="col-lg-9">
+  <div class="col-lg-9 table-responsive">
     <h4>Details</h4>
 
     <%! import markupsafe %>
 
-    <table class="table table-striped table-sm text-break">
+    <table class="table table-striped table-sm">
       % for arg in run_args:
           % if len(arg[2]) == 0:
               <tr>
@@ -240,11 +240,11 @@ if 'spsa' in run['args']:
   <h4 class="d-inline-block">
     <button id="diff-toggle" class="btn btn-sm btn-light border">Show</button>
     Diff
-    <span id="diff-num-comments" style="display: none"></span>
+    <span id="diff-num-comments" class="me-1" style="display: none"></span>
+    <a href="${h.diff_url(run)}" id="view-on-github" class="btn btn-secondary d-sm-inline me-1" target="_blank" rel="noopener">View on Github</a>
+    <a href="javascript:" id="copy-diff" class="btn btn-outline-secondary d-sm-inline text-nowrap" style="display: none">Copy apply-diff command</a>
+    <span class="text-success copied" style="display: none"><i class="fa-solid fa-check"></i></span>
   </h4>
-  <a href="${h.diff_url(run)}" id="view-on-github" target="_blank" rel="noopener">View on Github</a>
-  <a href="javascript:" id="copy-diff" style="margin-left: 10px; display: none">Copy apply-diff command</a>
-  <span class="text-success copied" style="display: none"><i class="fa-solid fa-check"></i></span>
   <pre id="diff-contents"><code class="diff"></code></pre>
 </section>
 
