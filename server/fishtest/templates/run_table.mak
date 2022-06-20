@@ -70,7 +70,7 @@
 
   ${pagination()}
 
-  <div>
+  <div class="table-responsive-lg">
     <table class="table table-striped table-sm">
       <tbody>
         % for run in runs:

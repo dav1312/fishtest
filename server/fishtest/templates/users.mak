@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div>
+<div class="table-responsive-lg">
   <table class="table table-striped table-sm">
     <thead class="sticky-top">
       <tr>
