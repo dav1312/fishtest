@@ -1,3 +1,19 @@
+@media (max-width: 575.98px) {
+  body {
+    font-size: 14px;
+  }
+
+  .run-view {
+    min-width: 40px !important;
+  }
+
+  .run-date,
+  .run-user,
+  .run-diff {
+    display: none !important;
+  }
+}
+
 @media (min-width: 992px) {
   .layout {
       display: grid;
