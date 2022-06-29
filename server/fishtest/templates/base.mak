@@ -88,19 +88,19 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
               % if request.authenticated_userid:
                 <li class="nav-item col-6 col-lg-auto order-lg-2">
-                  <a class="nav-link py-2 px-0 px-lg-2" href="/tests/user/${request.authenticated_userid}">
+                  <a class="nav-link py-2 px-0 px-lg-2" href="/tests/user/${request.authenticated_userid}" title="My Tests">
                     <i class="fa-solid fa-flask d-inline me-2 mx-lg-1"></i>
                     <span class="d-inline d-lg-none">My Tests</span>
                   </a>
                 </li>
                 <li class="nav-item col-6 col-lg-auto order-lg-1">
-                  <a class="nav-link py-2 px-0 px-lg-2" href="/tests/run">
+                  <a class="nav-link py-2 px-0 px-lg-2" href="/tests/run" title="New Test">
                     <i class="fa-solid fa-plus d-inline me-2 mx-lg-1"></i>
                     <span class="d-inline d-lg-none">New Test</span>
                   </a>
                 </li>
                 <li class="nav-item col-6 col-lg-auto order-lg-0">
-                  <a class="nav-link py-2 px-0 px-lg-2" href="/upload">
+                  <a class="nav-link py-2 px-0 px-lg-2" href="/upload" title="NN Upload">
                     <i class="fa-solid fa-cloud-arrow-up d-inline me-2 mx-lg-1"></i>
                     <span class="d-inline d-lg-none">NN Upload</span>
                   </a>
