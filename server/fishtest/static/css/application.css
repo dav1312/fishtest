@@ -20,6 +20,7 @@
       grid-template-areas: "sidebar main";
       grid-template-columns: 180px auto;
   }
+
   .mainnavbar {
     position: -webkit-sticky;
     position: sticky;
@@ -27,6 +28,10 @@
     display: block !important;
     height: calc(100vh - 3.5rem);
     overflow-y: auto
+  }
+
+  .run-info {
+    word-break: break-word;
   }
 }
 
