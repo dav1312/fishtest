@@ -100,7 +100,7 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                   </a>
                 </li>
                 <li class="nav-item col-6 col-lg-auto order-lg-0">
-                  <a class="nav-link py-2 px-0 px-lg-2" href="/upload" title="NN Upload">
+                  <a class="nav-link py-2 px-0 px-lg-2" href="/upload" title="Upload Neural Network">
                     <i class="fa-solid fa-cloud-arrow-up d-inline me-2 mx-lg-1"></i>
                     <span class="d-inline d-lg-none">NN Upload</span>
                   </a>
@@ -128,11 +128,11 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <hr class="d-lg-none">
               </li>
               <li class="nav-item col-6 col-lg-auto order-lg-2" id="change-color-theme">
-                <div id="sun" style="display: ${'none;' if request.cookies.get('theme') != 'dark' else 'inline-block;'}" class="nav-link py-2 px-0 px-lg-2">
-                  <i class="fa fa-sun"></i><span class="d-inline d-lg-none ms-2">Light theme</span>
+                <div id="sun" style="display: ${'none;' if request.cookies.get('theme') != 'dark' else 'inline-block;'}" class="nav-link py-2 px-0 px-lg-2" title="Light Theme">
+                  <i class="fa fa-sun"></i><span class="d-inline d-lg-none ms-2">Light Theme</span>
                 </div>
-                <div id="moon" style="display: ${'none;' if request.cookies.get('theme') == 'dark' else 'inline-block;'}" class="nav-link py-2 px-0 px-lg-2">
-                  <i class="fa fa-moon"></i><span class="d-inline d-lg-none ms-2">Dark theme</span>
+                <div id="moon" style="display: ${'none;' if request.cookies.get('theme') == 'dark' else 'inline-block;'}" class="nav-link py-2 px-0 px-lg-2" title="Dark Theme">
+                  <i class="fa fa-moon"></i><span class="d-inline d-lg-none ms-2">Dark Theme</span>
                 </div>
               </li>
             </ul>
