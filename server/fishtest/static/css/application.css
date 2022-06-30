@@ -30,7 +30,8 @@
     overflow-y: auto
   }
 
-  .run-info {
+  .run-info,
+  .user-repo {
     word-break: break-word;
   }
 }
