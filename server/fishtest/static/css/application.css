@@ -3,14 +3,27 @@
     font-size: 14px;
   }
 
-  .run-view {
-    min-width: 40px !important;
+  .run-table .run-button,
+  .run-table .run-date,
+  .run-table .run-user,
+  .run-table .run-view,
+  .run-table .run-diff,
+  .run-table .run-elo,
+  .run-table .run-live,
+  .run-table .run-info {
+    display: inline-flex;
+    width: unset !important;
+    border-top: 0 !important;
+    background: 0 !important;
+    box-shadow: none !important;
   }
 
-  .run-date,
-  .run-user,
-  .run-diff {
-    display: none !important;
+  .run-table .run-elo {
+    display: block;
+  }
+
+  .run-table > tbody > tr:nth-of-type(odd) {
+    background-color: var(--bs-table-striped-bg);
   }
 }
 

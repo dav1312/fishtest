@@ -299,6 +299,12 @@ div#tasks thead {
   background-color: var(--bg-dark-1);
 }
 
+@media (max-width: 575.98px) {
+  .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--bg-dark-2);
+  }
+}
+
 /* Background colors for running tasks on test run pages */
 .table tbody tr.info > td {
   background-color: #0f3373;
