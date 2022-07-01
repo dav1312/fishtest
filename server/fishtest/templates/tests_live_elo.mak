@@ -14,7 +14,7 @@
   <h2>Live Elo for SPRT test <a href="/tests/view/${str(run['_id'])}">${str(run['_id'])}</a></h2>
 
   <div class="row">
-    <div class="col-12 d-flex justify-content-center align-items-center flex-column flex-md-row" >
+    <div class="col-12 d-flex justify-content-center align-items-center flex-column flex-sm-row" >
       <div id="LLR_chart_div"></div>
       <div style="width: 1em"></div>
       <div id="LOS_chart_div"></div>
