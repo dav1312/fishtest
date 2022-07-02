@@ -75,13 +75,13 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
         <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#rightsidebar" aria-controls="rightsidebar" aria-expanded="false" aria-label="Toggle user navigation">
           <i class="fa-solid fa-ellipsis"></i>
         </button>
-    
+
         <div class="offcanvas-lg offcanvas-end flex-grow-1" id="rightsidebar" aria-labelledby="rightsidebarOffcanvasLabel" data-bs-scroll="true">
           <div class="offcanvas-header px-4 pb-0">
             <h5 class="offcanvas-title" id="rightsidebarOffcanvasLabel">User</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#rightsidebar"></button>
           </div>
-    
+
           <div class="offcanvas-body p-4 pt-0 p-lg-0">
             <hr class="d-lg-none">
 
@@ -218,7 +218,7 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                     <li><a href="https://github.com/official-stockfish/Stockfish" target="_blank" rel="noopener" class="links-link rounded">Stockfish</a></li>
                     <li><a href="https://github.com/glinscott/fishtest" target="_blank" rel="noopener" class="links-link rounded">Fishtest</a></li>
                     <li><a href="https://github.com/glinscott/nnue-pytorch" target="_blank" rel="noopener" class="links-link rounded">NN Trainer</a></li>
-                    <li><a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded">Books</a></li>            
+                    <li><a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded">Books</a></li>
                   </ul>
                 </li>
               </ul>

@@ -8,7 +8,7 @@
   <header class="text-md-center py-2">
     <h2>Login</h2>
     <div class="alert alert-info">
-      Don't have an account? 
+      Don't have an account?
       <strong><a href="/signup" class="alert-link">Sign up</a></strong>
     </div>
   </header>
