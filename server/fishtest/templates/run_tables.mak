@@ -11,7 +11,7 @@
 
     <%include file="run_table.mak" args="runs=pending_approval_runs,
                                          show_delete=True,
-                                         header='Pending approval',
+                                         header='Pending',
                                          count=len(pending_approval_runs),
                                          toggle=prefix+'pending',
                                          alt='No tests pending approval'"

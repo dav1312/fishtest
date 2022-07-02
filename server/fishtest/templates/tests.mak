@@ -8,16 +8,31 @@
 <h2>Stockfish Testing Queue</h2>
 
 % if page_idx == 0:
+    <div class="table-responsive-sm no-scrollbar">
+      <table class="table table-sm table-striped">
+        <thead>
+          <th>Cores</th>
+          <th title="Million nodes per second">MNps</th>
+          <th title="Total million nodes per second">Total MNps</th>
+          <th title="Games per minute">Games/min</th>
+          <th title="Hours remaining">Hours Remaining</th>
+        </thead>
+        <tbody>
+          <td style="width: 7%">${cores}</td>
+          <td style="width: 7%">${f"{nps / (cores * 1000000 + 1):.2f}"}</td>
+          <td style="width: 7%">${f"{nps / (1000000 + 1):.2f}"}</td>
+          <td style="width: 7%">${games_per_minute}</td>
+          <td>${pending_hours}</td>
+        </tbody>
+      </table>
+    </div>
+
     <h4>
       <button id="machines-button" class="btn btn-sm btn-light border">
         ${'Hide' if machines_shown else 'Show'}
       </button>
       <span>
-        ${len(machines)} machines ${cores}
-        cores ${f"{nps / (cores * 1000000 + 1):.2f}"} MNps
-        (${f"{nps / (1000000 + 1):.2f}"} total MNps)
-        ${games_per_minute} games/minute
-        ${pending_hours} hours remaining
+        Workers - ${len(machines)} machines
       </span>
     </h4>
 

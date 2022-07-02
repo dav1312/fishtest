@@ -105,6 +105,10 @@
   border: 4px solid var(--bs-white);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .sticky-top {
   background: var(--bs-body-bg);
 }
