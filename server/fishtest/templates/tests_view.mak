@@ -234,7 +234,9 @@ if 'spsa' in run['args']:
 
       <button id="btn_view_all" class="btn">View All</button>
     </div>
-    <div id="div_spsa_history_plot"></div>
+    <div class="overflow-auto">
+      <div id="div_spsa_history_plot"></div>
+    </div>
 % endif
 
 <section id="diff-section" style="display: none">
