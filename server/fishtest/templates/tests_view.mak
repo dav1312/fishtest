@@ -112,7 +112,7 @@ if 'spsa' in run['args']:
         <div class="col-12 col-sm col-lg-12 col-xxl">
           <form action="/tests/stop" method="POST">
             <input type="hidden" name="run-id" value="${run['_id']}">
-            <button type="submit" class="btn btn-danger w-100 text-truncate">
+            <button type="submit" class="btn btn-danger w-100 text-truncate hasIcon btn-test-stop">
               Stop
             </button>
           </form>
@@ -123,7 +123,7 @@ if 'spsa' in run['args']:
             <form action="/tests/approve" method="POST">
               <input type="hidden" name="run-id" value="${run['_id']}">
               <button type="submit" id="approve-btn"
-                      class="btn ${'btn-success' if run['base_same_as_master'] else 'btn-warning'} w-100 text-truncate">
+                      class="btn ${'btn-success' if run['base_same_as_master'] else 'btn-warning'} w-100 text-truncate hasIcon btn-test-approve">
                 Approve
               </button>
             </form>
@@ -133,12 +133,12 @@ if 'spsa' in run['args']:
         <div class="col-12 col-sm col-lg-12 col-xxl">
           <form action="/tests/purge" method="POST">
             <input type="hidden" name="run-id" value="${run['_id']}">
-            <button type="submit" class="btn btn-danger w-100 text-truncate">Purge</button>
+            <button type="submit" class="btn btn-danger w-100 text-truncate hasIcon btn-test-purge">Purge</button>
           </form>
         </div>
       % endif
       <div class="col-12 col-sm col-lg-12 col-xxl">
-        <a class="btn btn-light border w-100 text-truncate" href="/tests/run?id=${run['_id']}">Reschedule</a>
+        <a class="btn btn-light border w-100 text-truncate hasIcon btn-test-reschedule" href="/tests/run?id=${run['_id']}">Reschedule</a>
       </div>
     </div>
 
@@ -183,7 +183,7 @@ if 'spsa' in run['args']:
         <label class="form-check-label" role="button" for="auto-purge">Auto-purge</label>
       </div>
       <input type="hidden" name="run" value="${run['_id']}" />
-      <button type="submit" class="btn btn-primary col-12 col-md-auto">Modify</button>
+      <button type="submit" class="btn btn-primary col-12 col-md-auto hasIcon btn-test-modify">Modify</button>
     </form>
 
     % if 'spsa' not in run['args']:
@@ -240,9 +240,9 @@ if 'spsa' in run['args']:
     <button id="diff-toggle" class="btn btn-sm btn-light border mb-2">Show</button>
     Diff
     <span id="diff-num-comments" style="display: none"></span>
-    <a href="${h.diff_url(run)}" class="btn btn-primary bg-light-primary border-0 mb-2" target="_blank" rel="noopener">View on Github</a>
-    <a href="javascript:" id="copy-diff" class="btn btn-secondary bg-light-secondary border-0 mb-2" style="display: none">Copy apply-diff command</a>
-    <span class="text-success copied text-nowrap" style="display: none"><i class="fa-solid fa-clipboard-check"></i> Copied!</span>
+    <a href="${h.diff_url(run)}" class="btn btn-primary bg-light-primary border-0 mb-2 hasIcon btn-test-viewOnGithub" target="_blank" rel="noopener">View on Github</a>
+    <a href="javascript:" id="copy-diff" class="btn btn-secondary bg-light-secondary border-0 mb-2 hasIcon btn-test-copyDiff" style="display: none">Copy apply-diff command</a>
+    <span class="text-success copied text-nowrap" style="display: none">Copied!</span>
   </h4>
   <pre id="diff-contents"><code class="diff"></code></pre>
 </section>

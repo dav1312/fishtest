@@ -228,8 +228,7 @@ legend {
 
 /* Icons */
 .mainnavbar a::before,
-#diff-num-comments + a::before,
-#copy-diff::before {
+.hasIcon::before {
   display: inline-block;
   font-style: normal;
   font-variant: normal;
@@ -394,14 +393,36 @@ legend {
   content: "\f186";
 }
 
-#diff-num-comments + a::before {
+.btn-test-viewOnGithub::before {
   content: "\f09b";
   font-family: "Font Awesome 5 Brands";
   font-weight: 400;
 }
 
-#copy-diff::before {
+.btn-test-copyDiff::before {
   content: "\f328";
+}
+
+.btn-test-stop::before {
+  content: "\f28d";
+}
+
+.btn-test-approve::before {
+  content: "\f058";
+}
+
+.btn-test-purge::before {
+  content: "\f2ed";
+}
+
+.btn-test-reschedule::before {
+  content: "\f073";
+  margin-right: 4px;
+}
+
+.btn-test-modify::before {
+  content: "\f044";
+    margin-right: 4px;
 }
 
 /* Header */
