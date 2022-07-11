@@ -454,3 +454,13 @@ option.grayedoutoption {
 #ELO_chart_div path:nth-child(5) {
   fill: #880000;
 }
+
+.text-muted {
+  color: var(--color-dark-2) !important;
+}
+
+/* Cards */
+.card {
+  color: var(--color-dark-1);
+  background-color: var(--bg-dark-2);
+}

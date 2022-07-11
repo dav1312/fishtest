@@ -70,6 +70,28 @@
 
   ${pagination()}
 
+  <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-3 mb-3">
+    % for run in runs:
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-header d-flex flex-wrap justify-content-between">
+            <a href="/tests/user/${run['args'].get('username', '')}"
+               title="${run['args'].get('username', '')}">
+              ${run['args'].get('username', '')}
+            </a>
+            <a href="/tests/view/${run['_id']}">
+              ${run['args']['new_tag'][:23]}
+            </a>
+          </div>
+          <div class="card-body">
+            <%include file="elo_results.mak" args="run=run" />
+            <p class="card-text">${run['args'].get('info', '')}</p>
+          </div>
+          <div class="card-footer text-muted">${run['start_time'].strftime("%y-%m-%d")}</div>
+        </div>
+      </div>
+    % endfor
+  </div>
   <div class="table-responsive-lg">
     <table class="table table-striped table-sm run-table">
       <tbody>
