@@ -14,27 +14,32 @@
 </script>
 
 <form onsubmit="timestamp();">
-  Show only:
-  <select id="restrict" name="action">
-    <option value="">All</option>
-    <option value="new_run">New Run</option>
-    <option value="approve_run">Approve Run</option>
-    <option value="modify_run">Modify Run</option>
-    <option value="stop_run">Stop Run</option>
-    <option value="delete_run">Delete Run</option>
-    <option value="purge_run">Purge Run</option>
-    <option value="block_user">Block/Unblock User</option>
-    <option value="upload_nn">Upload NN file</option>
-    <option value="failed_task">Failed Tasks</option>
-    <option class=grayedoutoption value="dead_task">Dead Tasks</option>
-    <option class=grayedoutoption value="update_stats">System Events</option>
-  </select>
-  &nbsp;From user:
-  <input id="user" type="text" name="user" class="submit_on_enter">
-  <br/>
+  <div class="mb-3">
+    <label for="restrict" class="form-label">Show only</label>
+    <select class="form-select" id="restrict" name="action">
+      <option value="">All</option>
+      <option value="new_run">New Run</option>
+      <option value="approve_run">Approve Run</option>
+      <option value="modify_run">Modify Run</option>
+      <option value="stop_run">Stop Run</option>
+      <option value="delete_run">Delete Run</option>
+      <option value="purge_run">Purge Run</option>
+      <option value="block_user">Block/Unblock User</option>
+      <option value="upload_nn">Upload NN file</option>
+      <option value="failed_task">Failed Tasks</option>
+      <option class="grayedoutoption" value="dead_task">Dead Tasks</option>
+      <option class="grayedoutoption" value="update_stats">System Events</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="user" class="form-label">From user</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="username">
+  </div>
   <input type="hidden" id="before" name="before" value=-1>
   <input type="hidden" id="count" name="count" value=100>
-<button type="submit" class="btn btn-success">Select</button>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-success">Select</button>
+  </div>
 </form>
 
 <div class="table-responsive-lg">
