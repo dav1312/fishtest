@@ -373,7 +373,7 @@ def get_idle_users(request):
 
 @view_config(route_name="pending", renderer="pending.mak")
 def pending(request):
-    if not request.has_permission("approve_run"):
+    if not request.has_permission("moderate"):
         request.session.flash("You cannot view pending users", "error")
         return HTTPFound(location=request.route_url("tests"))
 
@@ -389,7 +389,7 @@ def user(request):
         return HTTPFound(location=request.route_url("login"))
     user_name = request.matchdict.get("username", userid)
     profile = user_name == userid
-    if not profile and not request.has_permission("approve_run"):
+    if not profile and not request.has_permission("moderate"):
         request.session.flash("You cannot inspect users", "error")
         return HTTPFound(location=request.route_url("tests"))
     user_data = request.userdb.get_user(user_name)
