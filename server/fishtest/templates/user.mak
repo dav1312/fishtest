@@ -1,5 +1,13 @@
 <%inherit file="base.mak"/>
 
+<%
+  user_is_blocked = user['blocked'] if 'blocked' in user else False
+  user_is_approver = True if 'group:approvers' in user['groups'] else False
+  user_is_moderator = True if 'group:moderators' in user['groups'] else False
+  user_is_administrator = True if 'group:administrators' in user['groups'] else False
+  show_submit = False
+%>
+
 <script>
   document.title = 'User Administration | Stockfish Testing';
 </script>
@@ -27,7 +35,11 @@
   </header>
 
   <form action="${request.url}" method="POST">
-    % if profile:
+    ## admins can change the password of other users, except other admins
+    % if profile or (admin and not user_is_administrator):
+      <%
+        show_submit = True
+      %>
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -50,7 +62,7 @@
           placeholder="Password"
           pattern=".{8,}"
           title="Eight or more characters: a password too simple or trivial to guess will be rejected"
-          required="required"
+          ${'required="required"' if profile else ''}
         />
         <label for="password" class="d-flex align-items-end">New Password</label>
       </div>
@@ -62,31 +74,51 @@
           id="password2"
           name="password2"
           placeholder="Repeat Password"
-          required="required"
+          ${'required="required"' if profile else ''}
         />
         <label for="password2" class="d-flex align-items-end">Repeat Password</label>
       </div>
-    % else:
-      <%
-        blocked = user['blocked'] if 'blocked' in user else False
-        checked = 'checked' if blocked else ''
-      %>
-      <div class="list-group">
-        <label class="list-group-item d-flex gap-2 mb-3 rounded-2">
+    % endif
+
+    ## can't autoblock and have to be a mod
+    % if not profile and moderator:
+      ## admins can block moderators but not other admins
+      ## moderators can't block other mods or admins
+      % if (admin and (user_is_moderator and not user_is_administrator)) or (moderator and (not user_is_moderator and not user_is_administrator)):
+        <%
+          show_submit = True
+        %>
+        <div class="mb-3 form-check">
+          <label for="blocked">Blocked</label>
           <input
-            class="form-check-input flex-shrink-0"
             type="checkbox"
+            class="form-check-input"
+            id="blocked"
             name="blocked"
             value="True"
-            ${checked}
-          >
-          <span>Blocked</span>
-        </label>
+            ${'checked' if user_is_blocked else ''}
+          />
+        </div>
+      % endif
+    % endif
+
+    % if not profile and admin and not user_is_administrator:
+      <%
+        show_submit = True
+      %>
+      <div class="mb-3">
+        <label class="form-label" for="group">Group:</label>
+        <select class="form-select" name="group" id="group">
+          <option value="" ${'selected' if not user_is_approver and not user_is_moderator else ''}>Regular users</option>
+          <option value="group:approvers" ${'selected' if user_is_approver else ''}>Approvers</option>
+          <option value="group:moderators" ${'selected' if user_is_moderator else ''}>Moderators</option>
+        </select>
       </div>
     % endif
 
-    <button type="submit" class="btn btn-primary w-100">Submit</button>
-
-    <input type="hidden" name="user" value="${user['username']}" />
+    % if show_submit:
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+      <input type="hidden" name="user" value="${user['username']}" />
+    % endif
   </form>
 </div>

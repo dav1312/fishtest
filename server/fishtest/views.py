@@ -307,6 +307,13 @@ def actions(request):
                 "blocked" if action["data"]["blocked"] else "unblocked"
             )
             item["user"] = action["data"]["user"]
+        elif action["action"] == "change_group":
+            before = action["data"]["before"]
+            after = action["data"]["after"]
+            item["description"] = (
+                "changed group from '{}' to '{}'".format(before, after)
+            )
+            item["user"] = action["data"]["user"]
         elif action["action"] == "modify_run":
             item["run"] = action["data"]["before"]["args"]["new_tag"]
             item["_id"] = action["data"]["before"]["_id"]
@@ -358,7 +365,11 @@ def actions(request):
 
         actions_list.append(item)
 
-    return {"actions": actions_list, "approver": request.has_permission("approve_run")}
+    return {
+        "actions": actions_list,
+        "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
+    }
 
 
 def get_idle_users(request):
@@ -373,7 +384,7 @@ def get_idle_users(request):
 
 @view_config(route_name="pending", renderer="pending.mak")
 def pending(request):
-    if not request.has_permission("approve_run"):
+    if not request.has_permission("moderate"):
         request.session.flash("You cannot view pending users", "error")
         return HTTPFound(location=request.route_url("tests"))
 
@@ -389,13 +400,12 @@ def user(request):
         return HTTPFound(location=request.route_url("login"))
     user_name = request.matchdict.get("username", userid)
     profile = user_name == userid
-    if not profile and not request.has_permission("approve_run"):
+    if not profile and not request.has_permission("moderate"):
         request.session.flash("You cannot inspect users", "error")
         return HTTPFound(location=request.route_url("tests"))
     user_data = request.userdb.get_user(user_name)
     if "user" in request.POST:
-        if profile:
-
+        if profile or request.has_permission("administrate"):
             new_password = request.params.get("password")
             new_password_verify = request.params.get("password2", "")
             new_email = request.params.get("email")
@@ -415,12 +425,10 @@ def user(request):
                         request.session.flash(
                             "Error! Weak password: " + password_err, "error"
                         )
-                        return HTTPFound(location=request.route_url("tests"))
                 else:
                     request.session.flash(
                         "Error! Matching verify password required", "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
 
             if len(new_email) > 0 and user_data["email"] != new_email:
                 email_is_valid, validated_email = email_valid(new_email)
@@ -428,25 +436,41 @@ def user(request):
                     request.session.flash(
                         "Error! Invalid email: " + validated_email, "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
                 else:
                     user_data["email"] = validated_email
                     request.session.flash("Success! Email updated")
 
-        else:
-            user_data["blocked"] = "blocked" in request.POST
-            request.userdb.last_pending_time = 0
-            request.actiondb.block_user(
-                request.authenticated_userid,
-                {"user": user_name, "blocked": user_data["blocked"]},
-            )
-            request.session.flash(
-                ("Blocked" if user_data["blocked"] else "Unblocked")
-                + " user "
-                + user_name
-            )
+        if request.has_permission("moderate"):
+            unblock = request.POST.get("blocked") == None
+            if user_data["blocked"] == unblock:
+                user_data["blocked"] = "blocked" in request.POST
+                request.userdb.last_pending_time = 0
+                request.actiondb.block_user(
+                    request.authenticated_userid,
+                    {"user": user_name, "blocked": user_data["blocked"]},
+                )
+                request.session.flash(
+                    ("Blocked" if user_data["blocked"] else "Unblocked")
+                    + " user "
+                    + user_name
+                )
+
+        if request.has_permission("administrate"):
+            new_group = request.params.get("group")
+            if new_group == "" or new_group == "group:approvers" or new_group == "group:moderators":
+                if (new_group not in user_data["groups"]) and (len(new_group) != len(user_data["groups"])):
+                    request.actiondb.change_group(
+                        request.authenticated_userid,
+                        {"user": user_name, "before": user_data["groups"][0], "after": new_group},
+                    )
+                    request.userdb.remove_user_groups(user_name)
+                    if len(new_group) > 0:
+                        request.userdb.add_user_group(user_name, new_group)
+                    request.session.flash("Group changed to " + user_data["groups"][0])
+            else:
+                request.session.flash("Invalid group", "error")
         request.userdb.save_user(user_data)
-        return HTTPFound(location=request.route_url("tests"))
+
     userc = request.userdb.user_cache.find_one({"username": user_name})
     hours = int(userc["cpu_hours"]) if userc is not None else 0
     return {
@@ -454,6 +478,9 @@ def user(request):
         "limit": request.userdb.get_machine_limit(user_name),
         "hours": hours,
         "profile": profile,
+        "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
+        "admin": request.has_permission("administrate"),
     }
 
 
@@ -1150,6 +1177,7 @@ def tests_view(request):
         "run_args": run_args,
         "page_title": get_page_title(run),
         "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
         "chi2": chi2,
         "totals": "({} active worker{} with {} core{})".format(
             active, ("s" if active != 1 else ""), cores, ("s" if cores != 1 else "")
