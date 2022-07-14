@@ -418,12 +418,10 @@ def user(request):
                         request.session.flash(
                             "Error! Weak password: " + password_err, "error"
                         )
-                        return HTTPFound(location=request.route_url("tests"))
                 else:
                     request.session.flash(
                         "Error! Matching verify password required", "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
 
             if len(new_email) > 0 and user_data["email"] != new_email:
                 email_is_valid, validated_email = email_valid(new_email)
@@ -431,7 +429,6 @@ def user(request):
                     request.session.flash(
                         "Error! Invalid email: " + validated_email, "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
                 else:
                     user_data["email"] = validated_email
                     request.session.flash("Success! Email updated")
