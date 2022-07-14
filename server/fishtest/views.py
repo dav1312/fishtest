@@ -358,7 +358,11 @@ def actions(request):
 
         actions_list.append(item)
 
-    return {"actions": actions_list, "approver": request.has_permission("approve_run")}
+    return {
+        "actions": actions_list,
+        "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
+    }
 
 
 def get_idle_users(request):
@@ -394,8 +398,7 @@ def user(request):
         return HTTPFound(location=request.route_url("tests"))
     user_data = request.userdb.get_user(user_name)
     if "user" in request.POST:
-        if profile:
-
+        if profile or request.has_permission("administrate"):
             new_password = request.params.get("password")
             new_password_verify = request.params.get("password2", "")
             new_email = request.params.get("email")
@@ -433,7 +436,7 @@ def user(request):
                     user_data["email"] = validated_email
                     request.session.flash("Success! Email updated")
 
-        else:
+        if request.has_permission("moderate"):
             user_data["blocked"] = "blocked" in request.POST
             request.userdb.last_pending_time = 0
             request.actiondb.block_user(
@@ -446,7 +449,6 @@ def user(request):
                 + user_name
             )
         request.userdb.save_user(user_data)
-        return HTTPFound(location=request.route_url("tests"))
     userc = request.userdb.user_cache.find_one({"username": user_name})
     hours = int(userc["cpu_hours"]) if userc is not None else 0
     return {
@@ -454,6 +456,9 @@ def user(request):
         "limit": request.userdb.get_machine_limit(user_name),
         "hours": hours,
         "profile": profile,
+        "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
+        "admin": request.has_permission("administrate"),
     }
 
 
@@ -1150,6 +1155,7 @@ def tests_view(request):
         "run_args": run_args,
         "page_title": get_page_title(run),
         "approver": request.has_permission("approve_run"),
+        "moderator": request.has_permission("moderate"),
         "chi2": chi2,
         "totals": "({} active worker{} with {} core{})".format(
             active, ("s" if active != 1 else ""), cores, ("s" if cores != 1 else "")

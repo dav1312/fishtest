@@ -27,7 +27,7 @@
   </header>
 
   <form action="${request.url}" method="POST">
-    % if profile:
+    % if profile or admin:
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -50,7 +50,6 @@
           placeholder="Password"
           pattern=".{8,}"
           title="Eight or more characters: a password too simple or trivial to guess will be rejected"
-          required="required"
         />
         <label for="password" class="d-flex align-items-end">New Password</label>
       </div>
@@ -62,11 +61,11 @@
           id="password2"
           name="password2"
           placeholder="Repeat Password"
-          required="required"
         />
         <label for="password2" class="d-flex align-items-end">Repeat Password</label>
       </div>
-    % else:
+    % endif
+    % if moderator:
       <%
         blocked = user['blocked'] if 'blocked' in user else False
         checked = 'checked' if blocked else ''

@@ -44,7 +44,7 @@ if 'spsa' in run['args']:
                   % if arg[0] == 'username':
                       <td>
                         <a href="/tests/user/${arg[1]}">${arg[1]}</a>
-                        % if approver:
+                        % if moderator:
                             (<a href="/user/${arg[1]}">user admin</a>)
                         % endif
                       </td>

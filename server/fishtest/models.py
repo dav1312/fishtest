@@ -6,12 +6,12 @@ class RootFactory(object):
         (Allow, Everyone, "view"),
         (Allow, "group:approvers", "approve_run"),
         (Allow, "group:moderators", "approve_run"),
-        (Allow, "group:admins", "approve_run"),
+        (Allow, "group:administrators", "approve_run"),
 
         (Allow, "group:moderators", "moderate"),
-        (Allow, "group:admins", "moderate"),
+        (Allow, "group:administrators", "moderate"),
 
-        (Allow, "group:admins", "administrate")
+        (Allow, "group:administrators", "administrate")
     ]
 
     def __init__(self, request):
