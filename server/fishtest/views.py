@@ -460,12 +460,12 @@ def user(request):
             if (new_group not in user_data["groups"]) and (len(new_group) != len(user_data["groups"])):
                 request.actiondb.change_group(
                     request.authenticated_userid,
-                    {"user": user_name, "before": user_data["groups"], "after": new_group},
+                    {"user": user_name, "before": user_data["groups"][0], "after": new_group},
                 )
                 request.userdb.remove_user_groups(user_name)
                 if len(new_group) > 0:
                     request.userdb.add_user_group(user_name, new_group)
-                request.session.flash("Group changed")
+                request.session.flash("Group changed to " + user_data["groups"][0])
 
         request.userdb.save_user(user_data)
     userc = request.userdb.user_cache.find_one({"username": user_name})
