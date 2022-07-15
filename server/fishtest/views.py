@@ -307,6 +307,13 @@ def actions(request):
                 "blocked" if action["data"]["blocked"] else "unblocked"
             )
             item["user"] = action["data"]["user"]
+        elif action["action"] == "change_group":
+            before = action["data"]["before"]
+            after = action["data"]["after"]
+            item["description"] = (
+                "changed group from '{}' to '{}'".format(before, after)
+            )
+            item["user"] = action["data"]["user"]
         elif action["action"] == "modify_run":
             item["run"] = action["data"]["before"]["args"]["new_tag"]
             item["_id"] = action["data"]["before"]["_id"]
@@ -449,12 +456,16 @@ def user(request):
                 )
 
         if request.has_permission("administrate"):
-            new_role = request.params.get("role")
-            if new_role not in user_data["groups"]:
+            new_group = request.params.get("group")
+            if (new_group not in user_data["groups"]) and (len(new_group) != len(user_data["groups"])):
+                request.actiondb.change_group(
+                    request.authenticated_userid,
+                    {"user": user_name, "before": user_data["groups"], "after": new_group},
+                )
                 request.userdb.remove_user_groups(user_name)
-                if len(new_role) > 0:
-                    request.userdb.add_user_group(user_name, new_role)
-                request.session.flash("Roles updated")
+                if len(new_group) > 0:
+                    request.userdb.add_user_group(user_name, new_group)
+                request.session.flash("Group changed")
 
         request.userdb.save_user(user_data)
     userc = request.userdb.user_cache.find_one({"username": user_name})

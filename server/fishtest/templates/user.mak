@@ -107,11 +107,11 @@
         show_submit = True
       %>
       <div class="mb-3">
-        <label class="form-label" for="role">Role:</label>
-        <select class="form-select" name="role" id="role">
-          <option value="" ${'selected' if not user_is_approver and not user_is_moderator else ''}>Regular user</option>
-          <option value="group:approvers" ${'selected' if user_is_approver else ''}>Approver</option>
-          <option value="group:moderators" ${'selected' if user_is_moderator else ''}>Moderator</option>
+        <label class="form-label" for="group">Group:</label>
+        <select class="form-select" name="group" id="group">
+          <option value="" ${'selected' if not user_is_approver and not user_is_moderator else ''}>Regular users</option>
+          <option value="group:approvers" ${'selected' if user_is_approver else ''}>Approvers</option>
+          <option value="group:moderators" ${'selected' if user_is_moderator else ''}>Moderators</option>
         </select>
       </div>
     % endif
