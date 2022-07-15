@@ -110,8 +110,8 @@
         <label class="form-label" for="role">Role:</label>
         <select class="form-select" name="role" id="role">
           <option value="" ${'selected' if not user_is_approver and not user_is_moderator else ''}>Regular user</option>
-          <option value="approver" ${'selected' if user_is_approver else ''}>Approver</option>
-          <option value="moderator" ${'selected' if user_is_moderator else ''}>Moderator</option>
+          <option value="group:approvers" ${'selected' if user_is_approver else ''}>Approver</option>
+          <option value="group:moderators" ${'selected' if user_is_moderator else ''}>Moderator</option>
         </select>
       </div>
     % endif

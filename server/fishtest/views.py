@@ -450,14 +450,9 @@ def user(request):
 
         if request.has_permission("administrate"):
             new_role = request.params.get("role")
+            request.userdb.remove_user_groups(user_name)
             if len(new_role) > 0:
-                request.userdb.remove_user_groups(user_name)
-                if new_role == "approver":
-                    request.userdb.add_user_group(user_name, "group:approvers")
-                elif new_role == "moderator":
-                    request.userdb.add_user_group(user_name, "group:moderators")
-            else:
-                request.userdb.remove_user_groups(user_name)
+                request.userdb.add_user_group(user_name, new_role)
             request.session.flash("Roles updated")
 
         request.userdb.save_user(user_data)
