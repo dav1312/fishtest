@@ -466,8 +466,8 @@ def user(request):
                 if len(new_group) > 0:
                     request.userdb.add_user_group(user_name, new_group)
                 request.session.flash("Group changed to " + user_data["groups"][0])
-
         request.userdb.save_user(user_data)
+
     userc = request.userdb.user_cache.find_one({"username": user_name})
     hours = int(userc["cpu_hours"]) if userc is not None else 0
     return {
