@@ -387,6 +387,7 @@ def pending(request):
 @view_config(route_name="user", renderer="user.mak")
 @view_config(route_name="profile", renderer="user.mak")
 def user(request):
+    request.session.flash(request)
     userid = request.authenticated_userid
     if not userid:
         request.session.flash("Please login")

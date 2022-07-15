@@ -1,5 +1,16 @@
 <%inherit file="base.mak"/>
 
+<%
+    user_is_moderator = True if 'group:moderators' in user['groups'] else False
+    user_is_administrator = True if 'group:administrators' in user['groups'] else False
+%>
+
+${profile}
+<br><br>
+${user}
+<br><br>
+
+
 <script>
   document.title = 'User Administration | Stockfish Testing';
 </script>
@@ -27,6 +38,7 @@
   </header>
 
   <form action="${request.url}" method="POST">
+    ## admins can change the password of other users, including other admins
     % if profile or admin:
       <div class="form-floating mb-3">
         <input
@@ -65,10 +77,6 @@
         <label for="password2" class="d-flex align-items-end">Repeat Password</label>
       </div>
     % endif
-    <%
-        user_is_moderator = True if 'group:moderators' in user['groups'] else False
-        user_is_administrator = True if 'group:administrators' in user['groups'] else False
-    %>
     % if not profile and moderator and not user_is_moderator and not user_is_administrator:
       <%
         # if the user is a mod, and its inspecting an admin, only the submit button will be visible
