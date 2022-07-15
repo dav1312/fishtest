@@ -434,17 +434,19 @@ def user(request):
                     request.session.flash("Success! Email updated")
 
         if request.has_permission("moderate"):
-            user_data["blocked"] = "blocked" in request.POST
-            request.userdb.last_pending_time = 0
-            request.actiondb.block_user(
-                request.authenticated_userid,
-                {"user": user_name, "blocked": user_data["blocked"]},
-            )
-            request.session.flash(
-                ("Blocked" if user_data["blocked"] else "Unblocked")
-                + " user "
-                + user_name
-            )
+            unblock = request.POST.get("blocked") == None
+            if user_data["blocked"] == unblock:
+                user_data["blocked"] = "blocked" in request.POST
+                request.userdb.last_pending_time = 0
+                request.actiondb.block_user(
+                    request.authenticated_userid,
+                    {"user": user_name, "blocked": user_data["blocked"]},
+                )
+                request.session.flash(
+                    ("Blocked" if user_data["blocked"] else "Unblocked")
+                    + " user "
+                    + user_name
+                )
 
         if request.has_permission("administrate"):
             new_role = request.params.get("role")
@@ -454,6 +456,9 @@ def user(request):
                     request.userdb.add_user_group(user_name, "group:approvers")
                 elif new_role == "moderator":
                     request.userdb.add_user_group(user_name, "group:moderators")
+            else:
+                request.userdb.remove_user_groups(user_name)
+            request.session.flash("Roles updated")
 
         request.userdb.save_user(user_data)
     userc = request.userdb.user_cache.find_one({"username": user_name})
