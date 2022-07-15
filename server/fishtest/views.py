@@ -450,10 +450,11 @@ def user(request):
 
         if request.has_permission("administrate"):
             new_role = request.params.get("role")
-            request.userdb.remove_user_groups(user_name)
-            if len(new_role) > 0:
-                request.userdb.add_user_group(user_name, new_role)
-            request.session.flash("Roles updated")
+            if new_role not in user_data["groups"]:
+                request.userdb.remove_user_groups(user_name)
+                if len(new_role) > 0:
+                    request.userdb.add_user_group(user_name, new_role)
+                request.session.flash("Roles updated")
 
         request.userdb.save_user(user_data)
     userc = request.userdb.user_cache.find_one({"username": user_name})
