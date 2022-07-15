@@ -1,15 +1,12 @@
 <%inherit file="base.mak"/>
 
 <%
-    user_is_moderator = True if 'group:moderators' in user['groups'] else False
-    user_is_administrator = True if 'group:administrators' in user['groups'] else False
+  user_is_blocked = user['blocked'] if 'blocked' in user else False
+  user_is_approver = True if 'group:approvers' in user['groups'] else False
+  user_is_moderator = True if 'group:moderators' in user['groups'] else False
+  user_is_administrator = True if 'group:administrators' in user['groups'] else False
+  show_submit = False
 %>
-
-${profile}
-<br><br>
-${user}
-<br><br>
-
 
 <script>
   document.title = 'User Administration | Stockfish Testing';
@@ -38,8 +35,11 @@ ${user}
   </header>
 
   <form action="${request.url}" method="POST">
-    ## admins can change the password of other users, including other admins
-    % if profile or admin:
+    ## admins can change the password of other users, except other admins
+    % if profile or (admin and not user_is_administrator):
+      <%
+        show_submit = True
+      %>
       <div class="form-floating mb-3">
         <input
           type="email"
@@ -62,6 +62,7 @@ ${user}
           placeholder="Password"
           pattern=".{8,}"
           title="Eight or more characters: a password too simple or trivial to guess will be rejected"
+          ${'required="required"' if profile else ''}
         />
         <label for="password" class="d-flex align-items-end">New Password</label>
       </div>
@@ -73,48 +74,51 @@ ${user}
           id="password2"
           name="password2"
           placeholder="Repeat Password"
+          ${'required="required"' if profile else ''}
         />
         <label for="password2" class="d-flex align-items-end">Repeat Password</label>
       </div>
     % endif
-    % if not profile and moderator and not user_is_moderator and not user_is_administrator:
-      <%
-        # if the user is a mod, and its inspecting an admin, only the submit button will be visible
-        blocked = user['blocked'] if 'blocked' in user else False
-        checked = 'checked' if blocked else ''
-      %>
-      <div class="mb-3 form-check">
-        <label for="blocked">Blocked</label>
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="blocked"
-          name="blocked"
-          value="True"
-          ${checked}
-        />
-      </div>
-    % endif
-    % if not profile and admin and not user_is_administrator:
-      <%
-        # this should be a select between approvers and mods
-        checked = 'checked' if user_is_moderator else ''
-      %>
-      <div class="mb-3 form-check">
-          <label for="moderator">Moderator</label>
+
+    ## can't autoblock and have to be a mod
+    % if not profile and moderator:
+      ## admins can block moderators but not other admins
+      ## moderators can't block other mods or admins
+      % if (admin and (user_is_moderator and not user_is_administrator)) or (moderator and (not user_is_moderator and not user_is_administrator)):
+        <%
+          show_submit = True
+        %>
+        <div class="mb-3 form-check">
+          <label for="blocked">Blocked</label>
           <input
             type="checkbox"
             class="form-check-input"
-            id="Moderator"
-            name="Moderator"
+            id="blocked"
+            name="blocked"
             value="True"
-            ${checked}
+            ${'checked' if user_is_blocked else ''}
           />
+        </div>
+      % endif
+    % endif
+
+    % if not profile and admin and not user_is_administrator:
+      <%
+        show_submit = True
+      %>
+      <div class="mb-3">
+        <label class="form-label" for="rol">Rol:</label>
+        <select class="form-select" id="rol">
+          <option value="norole" ${'selected' if not user_is_approver and not user_is_moderator else ''}>Regular user</option>
+          <option value="approver" ${'selected' if user_is_approver else ''}>Approver</option>
+          <option value="moderator" ${'selected' if user_is_moderator else ''}>Moderator</option>
+        </select>
       </div>
     % endif
 
-    <button type="submit" class="btn btn-primary w-100">Submit</button>
-
-    <input type="hidden" name="user" value="${user['username']}" />
+    % if show_submit:
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+      <input type="hidden" name="user" value="${user['username']}" />
+    % endif
   </form>
 </div>

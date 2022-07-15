@@ -373,6 +373,7 @@ pre[style*="border-color:Pink"] {
 .form-select {
   background: #2f2f2f;
   color: rgb(177, 173, 167);
+  border-color: var(--bg-dark-5);
 }
 
 #create-new-test textarea {
