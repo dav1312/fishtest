@@ -69,8 +69,9 @@
         user_is_moderator = True if 'group:moderators' in user['groups'] else False
         user_is_administrator = True if 'group:administrators' in user['groups'] else False
     %>
-    % if moderator:
+    % if not profile and moderator and not user_is_moderator and not user_is_administrator:
       <%
+        # if the user is a mod, and its inspecting an admin, only the submit button will be visible
         blocked = user['blocked'] if 'blocked' in user else False
         checked = 'checked' if blocked else ''
       %>
@@ -86,23 +87,22 @@
         />
       </div>
     % endif
-    % if admin:
+    % if not profile and admin and not user_is_administrator:
       <%
+        # this should be a select between approvers and mods
         checked = 'checked' if user_is_moderator else ''
       %>
-      % if not user_is_administrator:
-        <div class="mb-3 form-check">
-            <label for="moderator">Moderator</label>
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="Moderator"
-              name="Moderator"
-              value="True"
-              ${checked}
-            />
-        </div>
-      % endif
+      <div class="mb-3 form-check">
+          <label for="moderator">Moderator</label>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="Moderator"
+            name="Moderator"
+            value="True"
+            ${checked}
+          />
+      </div>
     % endif
 
     <button type="submit" class="btn btn-primary w-100">Submit</button>
