@@ -445,6 +445,16 @@ def user(request):
                 + " user "
                 + user_name
             )
+
+        if request.has_permission("administrate"):
+            new_role = request.params.get("role")
+            if len(new_role) > 0:
+                request.userdb.remove_user_groups(user_name)
+                if new_role == "approver":
+                    request.userdb.add_user_group(user_name, "group:approvers")
+                elif new_role == "moderator":
+                    request.userdb.add_user_group(user_name, "group:moderators")
+
         request.userdb.save_user(user_data)
     userc = request.userdb.user_cache.find_one({"username": user_name})
     hours = int(userc["cpu_hours"]) if userc is not None else 0
