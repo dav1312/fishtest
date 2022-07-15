@@ -65,23 +65,44 @@
         <label for="password2" class="d-flex align-items-end">Repeat Password</label>
       </div>
     % endif
+    <%
+        user_is_moderator = True if 'group:moderators' in user['groups'] else False
+        user_is_administrator = True if 'group:administrators' in user['groups'] else False
+    %>
     % if moderator:
       <%
         blocked = user['blocked'] if 'blocked' in user else False
         checked = 'checked' if blocked else ''
       %>
-      <div class="list-group">
-        <label class="list-group-item d-flex gap-2 mb-3 rounded-2">
-          <input
-            class="form-check-input flex-shrink-0"
-            type="checkbox"
-            name="blocked"
-            value="True"
-            ${checked}
-          >
-          <span>Blocked</span>
-        </label>
+      <div class="mb-3 form-check">
+        <label for="blocked">Blocked</label>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="blocked"
+          name="blocked"
+          value="True"
+          ${checked}
+        />
       </div>
+    % endif
+    % if admin:
+      <%
+        checked = 'checked' if user_is_moderator else ''
+      %>
+      % if not user_is_administrator:
+        <div class="mb-3 form-check">
+            <label for="moderator">Moderator</label>
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="Moderator"
+              name="Moderator"
+              value="True"
+              ${checked}
+            />
+        </div>
+      % endif
     % endif
 
     <button type="submit" class="btn btn-primary w-100">Submit</button>
