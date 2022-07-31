@@ -52,6 +52,7 @@
     ${'Hide' if get_cookie(request, cookie_name)=='Hide' else 'Show'}
     </button>
 % endif
+<label for="${toggle}-button">
 % if header is not None and count is not None:
   ${header} - ${count} tests
 % elif header is not None:
@@ -59,6 +60,7 @@
 % elif count is not None:
   ${count} tests
 % endif
+</label>
 </h4>
 
 <div
