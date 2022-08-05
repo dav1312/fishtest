@@ -21,7 +21,7 @@ if 'spsa' in run['args']:
 % endif
 
 <h2>
-  <span>${page_title}</span>
+  <span class="text-break">${page_title}</span>
   <a href="${h.diff_url(run)}" target="_blank" rel="noopener">diff</a>
 </h2>
 

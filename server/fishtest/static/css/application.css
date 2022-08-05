@@ -475,6 +475,10 @@ td {
   max-height: 45vh;
 }
 
+#diff-section {
+  display: grid;
+}
+
 #diff-contents {
   max-height: 70vh;
 }
