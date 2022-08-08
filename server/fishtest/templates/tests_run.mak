@@ -321,6 +321,7 @@
                       class="form-check-input"
                       id="checkbox-auto-purge"
                       name="auto-purge"
+                      ${'checked' if args.get("auto_purge", false) else ''}
                     />
                   </div>
                 </div>
@@ -382,8 +383,8 @@
   };
 
   const preset_bounds = {
-    'standard STC': [ 0.0, 2.0],
-    'standard LTC': [ 0.5, 2.5],
+    'standard STC': [0.0, 2.0],
+    'standard LTC': [0.5, 2.5],
     'regression STC': [-1.75, 0.25],
     'regression LTC': [-1.75, 0.25],
   };
@@ -560,9 +561,20 @@
       document.getElementById("slow_smp_test").checked = true;
     }
 
-    % if args.get('spsa'):
+    % if args.get('sprt'):
+      const elo0 = '${args.get('sprt')['elo0']}';
+      const elo1 = '${args.get('sprt')['elo1']}';
+      // if elo0 and elo1 match with a preset from preset_bounds, select the preset
+      for (const preset in preset_bounds) {
+        if (elo0 == preset_bounds[preset][0] && elo1 == preset_bounds[preset][1]) {
+          document.getElementById("bounds").value = preset;
+          update_sprt_bounds(preset);
+          break;
+        }
+      }
+    % elif args.get('spsa'):
       document.getElementById('stop-rule-spsa').click();
-    % elif not args.get('sprt'):
+    % else:
       document.getElementById('stop-rule-games').click();
     % endif
   } else {
