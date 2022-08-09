@@ -147,11 +147,32 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Tests</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="/tests" class="links-link rounded">Overview</a></li>
-                    <li><a href="/tests/finished?ltc_only=1" class="links-link rounded">LTC</a></li>
-                    <li><a href="/tests/finished?success_only=1" class="links-link rounded">Greens</a></li>
-                    <li><a href="/tests/finished?yellow_only=1" class="links-link rounded">Yellows</a></li>
-                    <li><a href="https://groups.google.com/g/fishcooking-results" target="_blank" rel="noopener" class="links-link rounded">History</a></li>
+                    <li>
+                      <a href="/tests" class="links-link rounded">
+                        Overview
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?ltc_only=1" class="links-link rounded">
+                        LTC
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?success_only=1" class="links-link rounded">
+                        Greens
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?yellow_only=1" class="links-link rounded">
+                        Yellows
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://groups.google.com/g/fishcooking-results" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        History
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -160,17 +181,36 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Fishtest</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="/users" class="links-link rounded">Contributors</a></li>
-                    <li><a href="/users/monthly" class="links-link rounded">Top Month</a></li>
-                    <li><a href="/actions" class="links-link rounded">Events</a></li>
+                    <li>
+                      <a href="/users" class="links-link rounded">
+                        Contributors
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/users/monthly" class="links-link rounded">
+                        Top Month
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/actions" class="links-link rounded">
+                        Events
+                      </a>
+                    </li>
                     % if monitoring["state"] == 'enabled':
-                      <li><a href=${monitoring["url"]} target="_blank" rel="noopener" class="links-link rounded">Monitoring</a></li>
+                      <li>
+                        <a href=${monitoring["url"]} target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                          Monitoring
+                          <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                        </a>
+                      </li>
                     % endif
                     <li>
                       % if len(request.userdb.get_pending()) > 0:
                         <a href="/pending" class="links-link rounded text-danger">Pending Users (${len(request.userdb.get_pending())})</a>
                       % else:
-                        <a href="/pending" class="links-link rounded">Pending Users</a>
+                        <a href="/pending" class="links-link rounded">
+                          Pending Users
+                        </a>
                       % endif
                     </li>
                   </ul>
@@ -181,11 +221,33 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Stockfish</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://stockfishchess.org/download/" target="_blank" rel="noopener" class="links-link rounded">Official Releases</a></li>
-                    <li><a href="https://abrok.eu/stockfish/" target="_blank" rel="noopener" class="links-link rounded">Dev Builds</a></li>
-                    <li><a href="https://stockfishchess.org/get-involved/" target="_blank" rel="noopener" class="links-link rounded">Contribute</a></li>
-                    <li><a href="https://github.com/glinscott/fishtest/wiki/Regression-Tests" target="_blank" rel="noopener" class="links-link rounded">Progress</a></li>
-                    <li><a href="/nns" class="links-link rounded">NN Repo</a></li>
+                    <li>
+                      <a href="https://stockfishchess.org/download/" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Official Releases
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://abrok.eu/stockfish/" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Dev Builds
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://stockfishchess.org/get-involved/" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Contribute
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/fishtest/wiki/Regression-Tests" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Progress
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/nns" class="links-link rounded">NN Repo</a>
+                    </li>
                   </ul>
                 </li>
 
@@ -194,11 +256,37 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Resources</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://discord.gg/awnh2qZfTT" target="_blank" rel="noopener" class="links-link rounded">Discord</a></li>
-                    <li><a href="https://groups.google.com/g/fishcooking" target="_blank" rel="noopener" class="links-link rounded">Forum</a></li>
-                    <li><a href="https://github.com/glinscott/fishtest/wiki" target="_blank" rel="noopener" class="links-link rounded">Wiki</a></li>
-                    <li><a href="/sprt_calc?elo-model=Normalized&elo-0=0.0&elo-1=2.0&draw-ratio=0.49&rms-bias=191" class="links-link rounded">SPRT Calc</a></li>
-                    <li><a href="https://hxim.github.io/Stockfish-Evaluation-Guide/" target="_blank" rel="noopener" class="links-link rounded">Eval Guide</a></li>
+                    <li>
+                      <a href="https://discord.gg/awnh2qZfTT" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Discord
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://groups.google.com/g/fishcooking" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Forum
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/fishtest/wiki" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        Wiki
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/sprt_calc?elo-model=Normalized&elo-0=0.0&elo-1=2.0&draw-ratio=0.49&rms-bias=191" class="links-link rounded">
+                        <i class="fa-solid fa-calculator"></i>
+                        SPRT Calc
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://hxim.github.io/Stockfish-Evaluation-Guide/" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        <i class="fa-solid fa-book-open"></i>
+                        Eval Guide
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -207,10 +295,34 @@ monitoring = request.rundb.conn["admin"].command("getFreeMonitoringStatus")
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Development</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://github.com/official-stockfish/Stockfish" target="_blank" rel="noopener" class="links-link rounded">Stockfish</a></li>
-                    <li><a href="https://github.com/glinscott/fishtest" target="_blank" rel="noopener" class="links-link rounded">Fishtest</a></li>
-                    <li><a href="https://github.com/glinscott/nnue-pytorch" target="_blank" rel="noopener" class="links-link rounded">NN Trainer</a></li>
-                    <li><a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded">Books</a></li>
+                    <li>
+                      <a href="https://github.com/official-stockfish/Stockfish" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        <i class="fa-solid fa-fish"></i>
+                        Stockfish
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/fishtest" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        <i class="fa-solid fa-chess-knight"></i>
+                        Fishtest
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/nnue-pytorch" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        <i class="fa-brands fa-python"></i>
+                        NN Trainer
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded align-items-center">
+                        <i class="fa-solid fa-book"></i>
+                        Books
+                        <i class="fa-solid fa-arrow-up-right-from-square small ms-auto me-2 opacity-25"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
