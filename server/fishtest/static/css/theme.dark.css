@@ -302,70 +302,64 @@ pre[style*="border-color:Pink"] {
 
 /* Gauges */
 /* Outer-ring */
-#LLR_chart_div circle:nth-child(1),
-#LOS_chart_div circle:nth-child(1),
-#ELO_chart_div circle:nth-child(1) {
+.live-elo-charts circle[fill="#cccccc"][stroke="#333333"] {
   fill: var(--bg-dark-5);
   stroke: var(--color-dark-1);
 }
+
 /* Main background */
-#LLR_chart_div circle:nth-child(2),
-#LOS_chart_div circle:nth-child(2),
-#ELO_chart_div circle:nth-child(2) {
+.live-elo-charts circle[fill="#f7f7f7"][stroke="#e0e0e0"] {
   fill: var(--bg-dark-1);
   stroke: var(--bg-dark-3);
 }
+
 /* Main text */
-#LLR_chart_div text,
-#LOS_chart_div text,
-#ELO_chart_div text {
+.live-elo-charts text {
   fill: var(--color-dark-1);
 }
+
 /* Current value text */
-#LLR_chart_div text:nth-child(1),
-#LOS_chart_div text:nth-child(1),
-#ELO_chart_div text:nth-child(1) {
-  fill: var(--color-dark-1);
+.live-elo-charts text[fill="#000000"] {
+  fill: var(--bs-gray-300);
 }
+
 /* Ticks */
-#LLR_chart_div path,
-#LOS_chart_div path,
-#ELO_chart_div path {
+.live-elo-charts [stroke="#666666"] {
   stroke: var(--color-dark-1);
 }
+.live-elo-charts [stroke="#333333"] {
+  stroke: var(--bs-gray-300);
+}
+
 /* Hand */
-#LLR_chart_div path:nth-child(2),
-#LOS_chart_div path:nth-child(2),
-#ELO_chart_div path:nth-child(2) {
+.live-elo-charts path[fill="#dc3912"][stroke="#c63310"] {
   fill: orange;
   stroke: orange;
 }
+
 /* Circle of the hand */
-#LLR_chart_div circle:nth-child(3),
-#LOS_chart_div circle:nth-child(3),
-#ELO_chart_div circle:nth-child(3) {
+.live-elo-charts circle[fill="#4684ee"] {
   fill: #355eae;
 }
+
 /* Good area */
-#LLR_chart_div path:nth-child(3),
-#LOS_chart_div path:nth-child(3),
-#ELO_chart_div path:nth-child(3) {
+.live-elo-charts path[fill="#109618"] {
   fill: #005500;
 }
+
 /* Neutral area */
-#LLR_chart_div path:nth-child(4),
-#LOS_chart_div path:nth-child(4),
-#ELO_chart_div path:nth-child(4) {
+.live-elo-charts path[fill="#ff9900"] {
   fill: #9f3e18;
 }
+
 /* Bad area */
-#LLR_chart_div path:nth-child(5),
-#LOS_chart_div path:nth-child(5),
-#ELO_chart_div path:nth-child(5) {
+.live-elo-charts path[fill="#dc3912"] {
   fill: #880000;
 }
 
 /* Cards */
 .card {
-  --bs-card-bg: var(--bg-dark-2);
+  --bs-card-bg: var(--bg-dark-1);
+  --bs-card-border-color: var(--bg-dark-3);
+  --bs-card-cap-bg: rgba(0, 0, 0, 0.1);
 }
