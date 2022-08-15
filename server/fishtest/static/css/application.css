@@ -546,3 +546,19 @@ input[type="checkbox"],
 .form-check-label {
   cursor: pointer;
 }
+
+div[collapsed] .expander {
+  display: -webkit-box;
+  overflow: hidden;
+  max-height: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines, 2);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-decoration-hover:hover {
+  text-decoration: underline;
+}

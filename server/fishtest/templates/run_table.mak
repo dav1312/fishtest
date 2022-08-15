@@ -131,7 +131,19 @@
               </td>
 
               <td class="run-info">
-                ${run['args'].get('info', '')}
+                <div should-use-number-of-lines>
+                  <div collapsed>
+                    <p class="mb-0 expander">
+                      ${run['args'].get('info', '')}
+                    </p>
+                  </div>
+                  <div class="opacity-50 fw-bold cursor-pointer text-decoration-hover less" hidden>
+                      Show less
+                  </div>
+                  <div class="opacity-50 fw-bold cursor-pointer text-decoration-hover more" hidden>
+                      Read more
+                  </div>
+              </div>
               </td>
             </tr>
         % endfor
@@ -146,3 +158,7 @@
 
   ${pagination()}
 </div>
+
+<script src="/js/limit_lines.js?v=${cache_busters['js/limit_lines.js']}"
+        integrity="sha384-${cache_busters['js/limit_lines.js']}"
+        crossorigin="anonymous"></script>
