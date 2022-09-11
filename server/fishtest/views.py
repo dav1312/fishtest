@@ -381,7 +381,7 @@ def get_idle_users(request):
 def pending(request):
     if not request.has_permission("approve_run"):
         request.session.flash("You cannot view pending users", "error")
-        return HTTPFound(location=request.route_url("tests"))
+        return home(request)
 
     return {"users": request.userdb.get_pending(), "idle": get_idle_users(request)}
 
@@ -397,7 +397,7 @@ def user(request):
     profile = user_name == userid
     if not profile and not request.has_permission("approve_run"):
         request.session.flash("You cannot inspect users", "error")
-        return HTTPFound(location=request.route_url("tests"))
+        return home(request)
     user_data = request.userdb.get_user(user_name)
     if "user" in request.POST:
         if profile:
@@ -421,12 +421,12 @@ def user(request):
                         request.session.flash(
                             "Error! Weak password: " + password_err, "error"
                         )
-                        return HTTPFound(location=request.route_url("tests"))
+                        return HTTPFound(location=request.current_route_path())
                 else:
                     request.session.flash(
                         "Error! Matching verify password required", "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
+                    return HTTPFound(location=request.current_route_path())
 
             if len(new_email) > 0 and user_data["email"] != new_email:
                 email_is_valid, validated_email = email_valid(new_email)
@@ -434,7 +434,7 @@ def user(request):
                     request.session.flash(
                         "Error! Invalid email: " + validated_email, "error"
                     )
-                    return HTTPFound(location=request.route_url("tests"))
+                    return HTTPFound(location=request.current_route_path())
                 else:
                     user_data["email"] = validated_email
                     request.session.flash("Success! Email updated")
@@ -452,7 +452,7 @@ def user(request):
                 + user_name
             )
         request.userdb.save_user(user_data)
-        return HTTPFound(location=request.route_url("tests"))
+        return HTTPFound(location=request.current_route_path())
     userc = request.userdb.user_cache.find_one({"username": user_name})
     hours = int(userc["cpu_hours"]) if userc is not None else 0
     return {
@@ -858,7 +858,7 @@ def tests_modify(request):
 
         if not can_modify_run(request, run):
             request.session.flash("Unable to modify another user's run!", "error")
-            return HTTPFound(location=request.route_url("tests"))
+            return home(request)
 
         existing_games = 0
         for chunk in run["tasks"]:
@@ -878,14 +878,14 @@ def tests_modify(request):
             request.session.flash(
                 "Unable to modify number of games in a fixed game test!", "error"
             )
-            return HTTPFound(location=request.route_url("tests"))
+            return home(request)
 
         max_games = 3200000
         if num_games > max_games:
             request.session.flash(
                 "Number of games must be <= " + str(max_games), "error"
             )
-            return HTTPFound(location=request.route_url("tests"))
+            return home(request)
 
         run["finished"] = False
         run["failed"] = False
@@ -903,7 +903,7 @@ def tests_modify(request):
         request.actiondb.modify_run(request.authenticated_userid, before, after)
 
         cached_flash(request, "Run successfully modified!")
-    return HTTPFound(location=request.route_url("tests"))
+    return home(request)
 
 
 @view_config(route_name="tests_stop", require_csrf=True, request_method="POST")
@@ -915,14 +915,14 @@ def tests_stop(request):
         run = request.rundb.get_run(request.POST["run-id"])
         if not can_modify_run(request, run):
             request.session.flash("Unable to modify another users run!", "error")
-            return HTTPFound(location=request.route_url("tests"))
+            return home(request)
 
         run["finished"] = True
         request.rundb.stop_run(request.POST["run-id"])
         run = del_tasks(run)
         request.actiondb.stop_run(request.authenticated_userid, run)
         cached_flash(request, "Stopped run")
-    return HTTPFound(location=request.route_url("tests"))
+    return home(request)
 
 
 @view_config(route_name="tests_approve", require_csrf=True, request_method="POST")
@@ -943,7 +943,7 @@ def tests_approve(request):
         cached_flash(request, "Approved run")
     else:
         request.session.flash("Unable to approve run!", "error")
-    return HTTPFound(location=request.route_url("tests"))
+    return home(request)
 
 
 @view_config(route_name="tests_purge", require_csrf=True, request_method="POST")
@@ -956,19 +956,19 @@ def tests_purge(request):
     run = request.rundb.get_run(request.POST["run-id"])
     if not run["finished"]:
         request.session.flash("Can only purge completed run", "error")
-        return HTTPFound(location=request.route_url("tests"))
+        return home(request)
 
     # More relaxed conditions than with auto purge.
     message = request.rundb.purge_run(run, p=0.01, res=4.5)
     if message != "":
         request.session.flash(message)
-        return HTTPFound(location=request.route_url("tests"))
+        return home(request)
 
     run = del_tasks(run)
     request.actiondb.purge_run(username, run)
 
     cached_flash(request, "Purged run")
-    return HTTPFound(location=request.route_url("tests"))
+    return home(request)
 
 
 @view_config(route_name="tests_delete", require_csrf=True, request_method="POST")
@@ -980,7 +980,7 @@ def tests_delete(request):
         run = request.rundb.get_run(request.POST["run-id"])
         if not can_modify_run(request, run):
             request.session.flash("Unable to modify another users run!", "error")
-            return HTTPFound(location=request.route_url("tests"))
+            return home(request)
 
         run["deleted"] = True
         run["finished"] = True
@@ -993,7 +993,7 @@ def tests_delete(request):
         request.actiondb.delete_run(request.authenticated_userid, run)
 
         cached_flash(request, "Deleted run")
-    return HTTPFound(location=request.route_url("tests"))
+    return home(request)
 
 
 def get_page_title(run):
