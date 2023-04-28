@@ -329,7 +329,8 @@
       class="btn btn-primary bg-light-primary border-0 mb-2"
       target="_blank" rel="noopener"
     >
-      View on Github
+      <i class="fa-brands fa-github"></i>
+      <div>View on Github</div>
     </a>
 
     <a
@@ -338,7 +339,8 @@
       class="btn btn-secondary bg-light-secondary border-0 mb-2"
       style="display: none"
     >
-      Copy apply-diff command
+      <i class="fa-solid fa-clipboard"></i>
+      <div>Copy apply-diff command</div>
     </a>
 
     <span class="text-success copied text-nowrap" style="display: none">Copied!</span>

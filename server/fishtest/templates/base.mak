@@ -148,11 +148,37 @@
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Tests</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="/tests" class="links-link rounded">Overview</a></li>
-                    <li><a href="/tests/finished?ltc_only=1" class="links-link rounded">LTC</a></li>
-                    <li><a href="/tests/finished?success_only=1" class="links-link rounded">Greens</a></li>
-                    <li><a href="/tests/finished?yellow_only=1" class="links-link rounded">Yellows</a></li>
-                    <li><a href="https://groups.google.com/g/fishcooking-results" target="_blank" rel="noopener" class="links-link rounded">History</a></li>
+                    <li>
+                      <a href="/tests" class="links-link rounded">
+                        <i class="fa-solid fa-table-list"></i>
+                        <div class="text-truncate">Overview</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?ltc_only=1" class="links-link rounded">
+                        <i class="fa-solid fa-clock"></i>
+                        <div class="text-truncate">LTC</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?success_only=1" class="links-link rounded">
+                        <i class="fa-solid fa-square-check"></i>
+                        <div class="text-truncate">Greens</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/tests/finished?yellow_only=1" class="links-link rounded">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <div class="text-truncate">Yellows</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://groups.google.com/g/fishcooking-results" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <div class="text-truncate">History</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -161,17 +187,44 @@
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Fishtest</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="/users" class="links-link rounded">Contributors</a></li>
-                    <li><a href="/users/monthly" class="links-link rounded">Top Month</a></li>
-                    <li><a href="/actions" class="links-link rounded">Events</a></li>
+                    <li>
+                      <a href="/users" class="links-link rounded">
+                        <i class="fa-solid fa-users"></i>
+                        <div class="text-truncate">Contributors</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/users/monthly" class="links-link rounded">
+                        <i class="fa-solid fa-trophy"></i>
+                        <div class="text-truncate">Top Month</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/actions" class="links-link rounded">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                        <div class="text-truncate">Events</div>
+                      </a>
+                    </li>
                     % if monitoring["state"] == 'enabled':
-                      <li><a href=${monitoring["url"]} target="_blank" rel="noopener" class="links-link rounded">Monitoring</a></li>
+                      <li>
+                        <a href=${monitoring["url"]} target="_blank" rel="noopener" class="links-link rounded">
+                          <i class="fa-solid fa-heart-pulse"></i>
+                          <div class="text-truncate">Monitoring</div>
+                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                      </li>
                     % endif
                     <li>
                       % if len(request.userdb.get_pending()) > 0:
-                        <a href="/pending" class="links-link rounded text-danger">Pending Users (${len(request.userdb.get_pending())})</a>
+                        <a href="/pending" class="links-link rounded text-danger">
+                          <i class="fa-solid fa-user-clock"></i>
+                          <div class="text-truncate">Pending Users (${len(request.userdb.get_pending())})</div>
+                        </a>
                       % else:
-                        <a href="/pending" class="links-link rounded">Pending Users</a>
+                        <a href="/pending" class="links-link rounded">
+                          <i class="fa-solid fa-user-clock"></i>
+                          <div class="text-truncate">Pending Users</div>
+                        </a>
                       % endif
                     </li>
                   </ul>
@@ -182,11 +235,40 @@
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Stockfish</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://stockfishchess.org/download/" target="_blank" rel="noopener" class="links-link rounded">Official Releases</a></li>
-                    <li><a href="https://abrok.eu/stockfish/" target="_blank" rel="noopener" class="links-link rounded">Dev Builds</a></li>
-                    <li><a href="https://stockfishchess.org/get-involved/" target="_blank" rel="noopener" class="links-link rounded">Contribute</a></li>
-                    <li><a href="https://github.com/official-stockfish/Stockfish/wiki/Regression-Tests" target="_blank" rel="noopener" class="links-link rounded">Progress</a></li>
-                    <li><a href="/nns" class="links-link rounded">NN Repo</a></li>
+                    <li>
+                      <a href="https://stockfishchess.org/download/" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-download"></i>
+                        <div class="text-truncate">Official Releases</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://abrok.eu/stockfish/" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-download"></i>
+                        <div class="text-truncate">Dev Builds</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://stockfishchess.org/get-involved/" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                        <div class="text-truncate">Contribute</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/official-stockfish/Stockfish/wiki/Regression-Tests" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <div class="text-truncate">Progress</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/nns" class="links-link rounded">
+                        <i class="fa-solid fa-brain"></i>
+                        <div class="text-truncate">NN Repo</div>
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -195,11 +277,40 @@
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Resources</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://discord.gg/awnh2qZfTT" target="_blank" rel="noopener" class="links-link rounded">Discord</a></li>
-                    <li><a href="https://groups.google.com/g/fishcooking" target="_blank" rel="noopener" class="links-link rounded">Forum</a></li>
-                    <li><a href="https://github.com/glinscott/fishtest/wiki" target="_blank" rel="noopener" class="links-link rounded">Wiki</a></li>
-                    <li><a href="/sprt_calc" class="links-link rounded">SPRT Calc</a></li>
-                    <li><a href="https://hxim.github.io/Stockfish-Evaluation-Guide/" target="_blank" rel="noopener" class="links-link rounded">Eval Guide</a></li>
+                    <li>
+                      <a href="https://discord.gg/awnh2qZfTT" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-brands fa-discord"></i>
+                        <div class="text-truncate">Discord</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://groups.google.com/g/fishcooking" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-comments"></i>
+                        <div class="text-truncate">Forum</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/fishtest/wiki" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-brands fa-wikipedia-w"></i>
+                        <div class="text-truncate">Wiki</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/sprt_calc" class="links-link rounded">
+                        <i class="fa-solid fa-calculator"></i>
+                        <div class="text-truncate">SPRT Calc</div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://hxim.github.io/Stockfish-Evaluation-Guide/" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-book-open"></i>
+                        <div class="text-truncate">Eval Guide</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -208,10 +319,34 @@
                 <li class="links-group">
                   <strong class="links-heading d-flex w-100 align-items-center fw-semibold">Development</strong>
                   <ul class="list-unstyled fw-normal small">
-                    <li><a href="https://github.com/official-stockfish/Stockfish" target="_blank" rel="noopener" class="links-link rounded">Stockfish</a></li>
-                    <li><a href="https://github.com/glinscott/fishtest" target="_blank" rel="noopener" class="links-link rounded">Fishtest</a></li>
-                    <li><a href="https://github.com/glinscott/nnue-pytorch" target="_blank" rel="noopener" class="links-link rounded">NN Trainer</a></li>
-                    <li><a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded">Books</a></li>
+                    <li>
+                      <a href="https://github.com/official-stockfish/Stockfish" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-fish"></i>
+                        <div class="text-truncate">Stockfish</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/fishtest" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-chess-knight"></i>
+                        <div class="text-truncate">Fishtest</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/glinscott/nnue-pytorch" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-brands fa-python"></i>
+                        <div class="text-truncate">NN Trainer</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/official-stockfish/books" target="_blank" rel="noopener" class="links-link rounded">
+                        <i class="fa-solid fa-book"></i>
+                        <div class="text-truncate">Books</div>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
